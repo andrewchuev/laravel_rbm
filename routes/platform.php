@@ -19,6 +19,7 @@ use App\Orchid\Screens\Driver\DriverListScreen;
 use App\Orchid\Screens\Place\PlaceListScreen;
 use App\Orchid\Screens\Driver\DriverEditScreen;
 use Illuminate\Support\Facades\Route;
+use App\Orchid\Screens\Visit\VisitListScreen;
 use Tabuna\Breadcrumbs\Trail;
 use App\Orchid\Screens\Place\PlaceEditScreen;
 
@@ -116,6 +117,12 @@ Route::screen('places/create', PlaceEditScreen::class)->name('platform.systems.p
 // Platform > System > Places > Place
 Route::screen('places/{place}/edit', PlaceEditScreen::class)->name('platform.systems.places.edit')
     ->breadcrumbs(fn(Trail $trail, $user) => $trail->parent('platform.systems.places')->push($user->name, route('platform.systems.places.edit', $user)));
+
+
+
+// Platform > System > Visits
+Route::screen('visits', VisitListScreen::class)->name('platform.systems.visits')
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Visits'), route('platform.systems.visits')));
 
 // Example...
 /*Route::screen('example', ExampleScreen::class)

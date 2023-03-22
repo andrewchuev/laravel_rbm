@@ -98,6 +98,11 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('grid')
                 ->route('platform.systems.places')
                 ->permission('platform.systems.places'),
+
+            Menu::make(__('Visits'))
+                ->icon('grid')
+                ->route('platform.systems.visits')
+                ->permission('platform.systems.visits'),
         ];
     }
 
@@ -123,6 +128,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->addPermission('platform.systems.roles', __('Roles'))
                 ->addPermission('platform.systems.users', __('Users'))
                 ->addPermission('platform.systems.drivers', __('Drivers'))
+                ->addPermission('platform.systems.visits', __('Visits'))
                 ->addPermission('platform.systems.places', __('Places')),
         ];
     }

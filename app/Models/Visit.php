@@ -6,21 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 
-class Driver extends Model
+class Visit extends Model
 {
     use HasFactory, AsSource;
 
     protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'chat_id',
+        'driver_id',
         'place_id',
+        'latitude',
+        'longitude',
+        'permissions',
     ];
 
-    //public $timestamps = false;
-
-    protected $guarded = [];
+    public function driver()
+    {
+        return $this->hasOne('\App\Models\Driver', 'id', 'driver_id');
+    }
 
     public function place()
     {
