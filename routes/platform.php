@@ -9,6 +9,7 @@ use App\Orchid\Screens\Examples\ExampleFieldsScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\Area\AreaListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 use App\Orchid\Screens\Visit\VisitListScreen;
 use Tabuna\Breadcrumbs\Trail;
 use App\Orchid\Screens\Place\PlaceEditScreen;
+use App\Orchid\Screens\Area\AreaEditScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,7 +106,17 @@ Route::screen('drivers/{driver}/edit', DriverEditScreen::class)
 Route::screen('drivers/create', DriverEditScreen::class)->name('platform.systems.drivers.create')
     ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.systems.drivers')->push(__('Create'), route('platform.systems.drivers.create')));
 
+// Platform > System > Areas
+Route::screen('areas', AreaListScreen::class)->name('platform.systems.areas')
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Areas'), route('platform.systems.areas')));
+// Platform > System > Areas > Create
+Route::screen('areas/create', AreaEditScreen::class)->name('platform.systems.areas.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.systems.areas')->push(__('Create'), route('platform.systems.areas.create')));
 
+
+// Platform > System > Areas > Area
+Route::screen('areas/{area}/edit', AreaEditScreen::class)->name('platform.systems.areas.edit')
+    ->breadcrumbs(fn(Trail $trail, $user) => $trail->parent('platform.systems.areas')->push($user->name, route('platform.systems.areas.edit', $user)));
 
 // Platform > System > Places
 Route::screen('places', PlaceListScreen::class)->name('platform.systems.places')
