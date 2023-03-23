@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PointsController;
+use App\Http\Controllers\PlacesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Route::get('setpoint/{id}{latitude}{longitude}', function ($id, $latitude, $long
 });
 
 Route::get('addpoint', [PointsController::class, 'addPoint' ]);
+Route::get('places', [PlacesController::class, 'getPlaces' ]);

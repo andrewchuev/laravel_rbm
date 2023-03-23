@@ -102,7 +102,7 @@ class DriverEditScreen extends Screen
     {
         $driver->fill($request->get('driver'))->save();
 
-        Alert::info('You have successfully created a driver.');
+        Alert::info('Driver was saved.');
 
         return redirect()->route('platform.systems.drivers');
     }

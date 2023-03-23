@@ -79,11 +79,11 @@ class PlaceEditScreen extends Screen
         ];
     }
 
-    public function createOrUpdate(Place $place, Request $request)
+    public function createOrUpdate(Place $place, Request $request): \Illuminate\Http\RedirectResponse
     {
         $place->fill($request->get('place'))->save();
 
-        Alert::info('You have successfully created a place.');
+        Alert::info('Place was saved.');
 
         return redirect()->route('platform.systems.places');
     }
