@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens\Place;
 
-use App\Models\Driver;
+use App\Models\Area;
 use App\Models\Place;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
@@ -75,15 +75,18 @@ class PlaceEditScreen extends Screen
                 Input::make('place.name')
                     ->title('Place Name')
                     ->placeholder('Enter Place Name'),
+                Select::make('place.area_id')
+                    ->title('Area')
+                    ->fromModel(Area::class, 'name'),
             ])
         ];
     }
 
-    public function createOrUpdate(Place $place, Request $request)
+    public function createOrUpdate(Place $place, Request $request): \Illuminate\Http\RedirectResponse
     {
         $place->fill($request->get('place'))->save();
 
-        Alert::info('You have successfully created a place.');
+        Alert::info('Place was saved.');
 
         return redirect()->route('platform.systems.places');
     }

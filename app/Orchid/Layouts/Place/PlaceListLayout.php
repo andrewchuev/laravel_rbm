@@ -31,6 +31,7 @@ class PlaceListLayout extends Table
     {
         return [
             TD::make('name','Place name'),
+            TD::make('area','Area')->render(fn(Place $place) => $place->area->name),
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')

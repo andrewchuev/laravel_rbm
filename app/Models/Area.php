@@ -6,17 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 
-class Place extends Model
+class Area extends Model
 {
     use HasFactory, AsSource;
 
     protected $fillable = [
         'name',
-        'area_id',
     ];
 
-    public function area()
+    public function places()
     {
-        return $this->hasOne('\App\Models\Area', 'id', 'area_id');
+        return $this->hasMany('\App\Models\Place', 'id', 'place_id');
     }
 }
