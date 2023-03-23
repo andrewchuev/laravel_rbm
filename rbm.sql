@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `areas`
+--
+
+DROP TABLE IF EXISTS `areas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `areas` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `areas`
+--
+
+LOCK TABLES `areas` WRITE;
+/*!40000 ALTER TABLE `areas` DISABLE KEYS */;
+INSERT INTO `areas` VALUES (1,'Участок 1',NULL,NULL),(2,'Участок 2',NULL,NULL),(3,'Участок 3',NULL,NULL),(4,'Участок 4',NULL,NULL);
+/*!40000 ALTER TABLE `areas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `attachmentable`
 --
 
@@ -92,10 +118,12 @@ CREATE TABLE `drivers` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `chat_id` int NOT NULL,
-  `place_id` int NOT NULL,
+  `chat_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `driver_no` int NOT NULL,
+  `car_no` int NOT NULL,
+  `area_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -106,7 +134,7 @@ CREATE TABLE `drivers` (
 
 LOCK TABLES `drivers` WRITE;
 /*!40000 ALTER TABLE `drivers` DISABLE KEYS */;
-INSERT INTO `drivers` VALUES (1,'Driver One','friver1@mail.com','+1111111111',123456,2,NULL,NULL);
+INSERT INTO `drivers` VALUES (1,'Driver One','friver1@mail.com','+1111111111','123456qw',NULL,'2023-03-23 20:36:48',0,0,4);
 /*!40000 ALTER TABLE `drivers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +179,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +188,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2015_04_12_000000_create_orchid_users_table',1),(4,'2015_10_19_214424_create_orchid_roles_table',1),(5,'2015_10_19_214425_create_orchid_role_users_table',1),(6,'2016_08_07_125128_create_orchid_attachmentstable_table',1),(7,'2017_09_17_125801_create_notifications_table',1),(8,'2019_08_19_000000_create_failed_jobs_table',1),(9,'2019_12_14_000001_create_personal_access_tokens_table',1),(10,'2023_03_21_140805_create_drivers_table',2),(11,'2023_03_21_140827_create_places_table',2),(13,'2023_03_21_192645_create_visits_table',3);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2015_04_12_000000_create_orchid_users_table',1),(4,'2015_10_19_214424_create_orchid_roles_table',1),(5,'2015_10_19_214425_create_orchid_role_users_table',1),(6,'2016_08_07_125128_create_orchid_attachmentstable_table',1),(7,'2017_09_17_125801_create_notifications_table',1),(8,'2019_08_19_000000_create_failed_jobs_table',1),(9,'2019_12_14_000001_create_personal_access_tokens_table',1),(10,'2023_03_21_140805_create_drivers_table',2),(11,'2023_03_21_140827_create_places_table',2),(13,'2023_03_21_192645_create_visits_table',3),(14,'2023_03_23_200459_add_carno_and_driverno_to_drivers_table',4),(15,'2023_03_23_200750_change_chatid_type_in_drivers_table',5),(16,'2023_03_23_201302_create_areas_table',6),(17,'2023_03_23_201424_add_area_id_to_places_table',6),(18,'2023_03_23_202720_add_area_id_to_drivers_table',7),(19,'2023_03_23_202948_remove_place_id_from_drivers_table',8);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,6 +291,7 @@ CREATE TABLE `places` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `area_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -273,7 +302,7 @@ CREATE TABLE `places` (
 
 LOCK TABLES `places` WRITE;
 /*!40000 ALTER TABLE `places` DISABLE KEYS */;
-INSERT INTO `places` VALUES (1,'Бур агрегат № 1',NULL,NULL),(2,'УОС',NULL,NULL),(3,'Компрессор',NULL,'2023-03-21 16:24:14'),(4,'РВР','2023-03-21 16:31:28','2023-03-21 16:31:28');
+INSERT INTO `places` VALUES (1,'Бур агрегат № 1',NULL,NULL,1),(2,'УОС',NULL,NULL,1),(3,'Компрессор',NULL,'2023-03-21 16:24:14',2),(4,'РВР','2023-03-21 16:31:28','2023-03-23 20:40:52',4);
 /*!40000 ALTER TABLE `places` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,4 +432,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-22 12:03:18
+-- Dump completed on 2023-03-23 20:43:47
