@@ -94,6 +94,11 @@ class PlatformProvider extends OrchidServiceProvider
                 ->route('platform.systems.drivers')
                 ->permission('platform.systems.drivers'),
 
+            Menu::make(__('Areas'))
+                ->icon('grid')
+                ->route('platform.systems.areas')
+                ->permission('platform.systems.areas'),
+
             Menu::make(__('Places'))
                 ->icon('grid')
                 ->route('platform.systems.places')
@@ -129,7 +134,8 @@ class PlatformProvider extends OrchidServiceProvider
                 ->addPermission('platform.systems.users', __('Users'))
                 ->addPermission('platform.systems.drivers', __('Drivers'))
                 ->addPermission('platform.systems.visits', __('Visits'))
-                ->addPermission('platform.systems.places', __('Places')),
+                ->addPermission('platform.systems.places', __('Places'))
+                ->addPermission('platform.systems.areas', __('Areas')),
         ];
     }
 }
