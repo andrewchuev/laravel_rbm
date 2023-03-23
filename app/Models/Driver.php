@@ -15,15 +15,15 @@ class Driver extends Model
         'email',
         'phone',
         'chat_id',
-        'place_id',
+        'area_id',
     ];
 
     //public $timestamps = false;
 
     protected $guarded = [];
 
-    public function place()
+    public function area()
     {
-        return $this->hasOne('\App\Models\Place', 'id', 'place_id');
+        return $this->hasOne('\App\Models\Area', 'id', 'area_id');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens\Place;
 
-use App\Models\Driver;
+use App\Models\Area;
 use App\Models\Place;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
@@ -75,6 +75,9 @@ class PlaceEditScreen extends Screen
                 Input::make('place.name')
                     ->title('Place Name')
                     ->placeholder('Enter Place Name'),
+                Select::make('place.area_id')
+                    ->title('Area')
+                    ->fromModel(Area::class, 'name'),
             ])
         ];
     }

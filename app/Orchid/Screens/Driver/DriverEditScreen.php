@@ -2,10 +2,9 @@
 
 namespace App\Orchid\Screens\Driver;
 
+use App\Models\Area;
 use App\Models\Driver;
-use App\Models\Place;
 use App\Models\VehicleType;
-use App\Orchid\Layouts\Place\PlaceListLayout;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Input;
@@ -90,9 +89,9 @@ class DriverEditScreen extends Screen
                     ->title('Telegram ID')
                     ->placeholder('Driver Telegram ID'),
 
-                Select::make('driver.place_id')
-                    ->title('Place')
-                    ->fromModel(Place::class, 'name'),
+                Select::make('driver.area_id')
+                    ->title('Area')
+                    ->fromModel(Area::class, 'name'),
 
             ])
         ];
