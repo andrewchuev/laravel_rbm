@@ -3,9 +3,12 @@
 namespace App\Orchid\Screens\Place;
 
 use App\Models\Place;
+use App\Orchid\Filters\PlaceFilter;
+use App\Orchid\Layouts\Place\PlaceFiltersLayout;
 use App\Orchid\Layouts\Place\PlaceListLayout;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
+
 
 class PlaceListScreen extends Screen
 {
@@ -16,7 +19,7 @@ class PlaceListScreen extends Screen
      */
     public function query(): iterable
     {
-        return ['places' => Place::paginate()];
+        return ['places' => Place::filtersApply([PlaceFilter::class])->filters()->paginate()];
     }
 
     /**
@@ -51,6 +54,7 @@ class PlaceListScreen extends Screen
     public function layout(): iterable
     {
         return [
+            PlaceFiltersLayout::class,
             PlaceListLayout::class
         ];
     }
