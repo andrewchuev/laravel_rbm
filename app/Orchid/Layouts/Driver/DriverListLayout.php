@@ -34,6 +34,8 @@ class DriverListLayout extends Table
             TD::make('email','Email'),
             TD::make('phone','Phone'),
             TD::make('chat_id','Telegram ID'),
+            TD::make('car_no','Car No'),
+            TD::make('driver_no','Driver No'),
             TD::make('area_id','Area')->render(fn(Driver $driver) => $driver->area->name),
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)

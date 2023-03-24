@@ -15,12 +15,10 @@ class Driver extends Model
         'email',
         'phone',
         'chat_id',
+        'car_no',
+        'driver_no',
         'area_id',
     ];
-
-    //public $timestamps = false;
-
-    protected $guarded = [];
 
     public function area()
     {

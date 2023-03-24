@@ -11,6 +11,7 @@ use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
+use Orchid\Support\Facades\Toast;
 
 class AreaEditScreen extends Screen
 {
@@ -47,7 +48,7 @@ class AreaEditScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make('Create place')
+            Button::make('Create Area')
                 ->icon('pencil')
                 ->method('createOrUpdate')
                 ->canSee(!$this->area->exists),
@@ -86,6 +87,15 @@ class AreaEditScreen extends Screen
         $area->fill($request->get('area'))->save();
 
         Alert::info('Area was saved.');
+
+        return redirect()->route('platform.systems.areas');
+    }
+
+    public function remove(Area $area)
+    {
+        $area->delete();
+
+        Toast::info(__('Area was removed'));
 
         return redirect()->route('platform.systems.areas');
     }

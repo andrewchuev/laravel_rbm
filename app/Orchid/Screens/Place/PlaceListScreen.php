@@ -16,7 +16,7 @@ class PlaceListScreen extends Screen
      */
     public function query(): iterable
     {
-        return ['places' => Place::all()];
+        return ['places' => Place::paginate()];
     }
 
     /**

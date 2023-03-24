@@ -12,6 +12,7 @@ use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
+use Orchid\Support\Facades\Toast;
 
 class DriverEditScreen extends Screen
 {
@@ -89,6 +90,14 @@ class DriverEditScreen extends Screen
                     ->title('Telegram ID')
                     ->placeholder('Driver Telegram ID'),
 
+                Input::make('driver.car_no')
+                    ->title('Car No')
+                    ->placeholder('Car No'),
+
+                Input::make('driver.driver_no')
+                    ->title('Driver No')
+                    ->placeholder('Driver No'),
+
                 Select::make('driver.area_id')
                     ->title('Area')
                     ->fromModel(Area::class, 'name'),
@@ -102,6 +111,15 @@ class DriverEditScreen extends Screen
         $driver->fill($request->get('driver'))->save();
 
         Alert::info('Driver was saved.');
+
+        return redirect()->route('platform.systems.drivers');
+    }
+
+    public function remove(Driver $driver)
+    {
+        $driver->delete();
+
+        Toast::info(__('Driver was removed'));
 
         return redirect()->route('platform.systems.drivers');
     }

@@ -28,7 +28,7 @@ CREATE TABLE `areas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `areas` (
 
 LOCK TABLES `areas` WRITE;
 /*!40000 ALTER TABLE `areas` DISABLE KEYS */;
-INSERT INTO `areas` VALUES (1,'Участок 1',NULL,'2023-03-23 21:21:49'),(2,'Участок 2',NULL,NULL),(3,'Участок 3',NULL,NULL),(4,'Участок 4',NULL,NULL),(5,'1212121212','2023-03-23 21:22:48','2023-03-23 21:22:48');
+INSERT INTO `areas` VALUES (1,'Участок 1',NULL,'2023-03-23 21:21:49'),(2,'Участок 2',NULL,NULL),(3,'Участок 3',NULL,NULL),(4,'Участок 4',NULL,NULL);
 /*!40000 ALTER TABLE `areas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `drivers` (
   `car_no` int NOT NULL,
   `area_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,7 +134,7 @@ CREATE TABLE `drivers` (
 
 LOCK TABLES `drivers` WRITE;
 /*!40000 ALTER TABLE `drivers` DISABLE KEYS */;
-INSERT INTO `drivers` VALUES (1,'Driver One','friver1@mail.com','+1111111111','123456qw',NULL,'2023-03-23 20:36:48',0,0,4);
+INSERT INTO `drivers` VALUES (1,'Driver One','friver1@mail.com','+1111111111','123456qw',NULL,'2023-03-23 20:36:48',0,0,4),(2,'driver2','driver@mail.com','+333333333','1212121212121212','2023-03-24 19:46:50','2023-03-24 19:46:50',54323,4567,2);
 /*!40000 ALTER TABLE `drivers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,7 +293,7 @@ CREATE TABLE `places` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `area_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -302,7 +302,7 @@ CREATE TABLE `places` (
 
 LOCK TABLES `places` WRITE;
 /*!40000 ALTER TABLE `places` DISABLE KEYS */;
-INSERT INTO `places` VALUES (1,'Бур агрегат № 1',NULL,NULL,1),(2,'УОС',NULL,NULL,1),(3,'Компрессор',NULL,'2023-03-21 16:24:14',2),(4,'РВР','2023-03-21 16:31:28','2023-03-23 20:40:52',4);
+INSERT INTO `places` VALUES (1,'Бур агрегат № 1',NULL,NULL,1),(2,'УОС',NULL,NULL,1),(3,'Компрессор',NULL,'2023-03-24 19:31:01',1),(4,'РВР','2023-03-21 16:31:28','2023-03-24 19:31:08',1),(5,'Шламник','2023-03-24 19:31:23','2023-03-24 19:31:23',1),(6,'Водозабор','2023-03-24 19:31:34','2023-03-24 19:31:34',1),(7,'Глинстанция','2023-03-24 19:31:44','2023-03-24 19:31:44',1),(8,'База','2023-03-24 19:31:55','2023-03-24 19:31:55',1),(9,'Заправка','2023-03-24 19:32:01','2023-03-24 19:32:01',1),(10,'Септик','2023-03-24 19:32:08','2023-03-24 19:32:08',1),(11,'Бур агрегат №1','2023-03-24 19:32:34','2023-03-24 19:32:34',2),(12,'УОС','2023-03-24 19:32:43','2023-03-24 19:32:43',2),(13,'Компрессор','2023-03-24 19:32:53','2023-03-24 19:32:53',2),(14,'РВМ','2023-03-24 19:33:13','2023-03-24 19:33:13',2),(15,'Шламник','2023-03-24 19:33:20','2023-03-24 19:33:20',2),(16,'Водозабор','2023-03-24 19:33:27','2023-03-24 19:33:27',2),(17,'Глинстанция','2023-03-24 19:33:35','2023-03-24 19:33:35',2),(18,'База','2023-03-24 19:33:44','2023-03-24 19:33:44',2),(19,'Заправка','2023-03-24 19:33:52','2023-03-24 19:33:52',2),(20,'Септик','2023-03-24 19:33:59','2023-03-24 19:33:59',2),(21,'Бур агрегат №1','2023-03-24 19:35:34','2023-03-24 19:35:34',3),(22,'УОС','2023-03-24 19:35:43','2023-03-24 19:35:43',3),(23,'Компрессор','2023-03-24 19:35:52','2023-03-24 19:35:52',3),(24,'РВМ','2023-03-24 19:36:02','2023-03-24 19:36:02',3),(25,'Шламник','2023-03-24 19:36:15','2023-03-24 19:36:15',3),(26,'Водозабор','2023-03-24 19:36:23','2023-03-24 19:36:23',3),(27,'Глинстанция','2023-03-24 19:36:30','2023-03-24 19:36:30',3),(28,'База','2023-03-24 19:36:38','2023-03-24 19:36:38',3),(29,'Заправка','2023-03-24 19:36:49','2023-03-24 19:36:49',3),(30,'Септик','2023-03-24 19:36:58','2023-03-24 19:36:58',3),(31,'Бур агрегат №1','2023-03-24 19:37:11','2023-03-24 19:37:11',4),(32,'УОС','2023-03-24 19:37:22','2023-03-24 19:37:22',4),(33,'Компрессор','2023-03-24 19:37:30','2023-03-24 19:37:30',4),(34,'РВМ','2023-03-24 19:37:49','2023-03-24 19:37:49',4),(35,'Шламник','2023-03-24 19:37:57','2023-03-24 19:37:57',4),(36,'Водозабор','2023-03-24 19:38:06','2023-03-24 19:38:06',4),(37,'Глинстанция','2023-03-24 19:38:13','2023-03-24 19:38:13',4),(38,'База','2023-03-24 19:38:20','2023-03-24 19:38:20',4),(39,'Заправка','2023-03-24 19:38:28','2023-03-24 19:38:28',4),(40,'Септик','2023-03-24 19:38:36','2023-03-24 19:38:36',4);
 /*!40000 ALTER TABLE `places` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -432,4 +432,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-23 21:26:14
+-- Dump completed on 2023-03-24 19:49:27

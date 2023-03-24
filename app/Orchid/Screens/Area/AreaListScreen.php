@@ -4,8 +4,10 @@ namespace App\Orchid\Screens\Area;
 
 use App\Models\Area;
 use App\Orchid\Layouts\Area\AreaListLayout;
+use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Toast;
 
 class AreaListScreen extends Screen
 {
@@ -55,5 +57,14 @@ class AreaListScreen extends Screen
         return [
             AreaListLayout::class
         ];
+    }
+
+    public function remove(Area $area)
+    {
+        $area->delete();
+
+        Toast::info(__('Area was removed'));
+
+        return redirect()->route('platform.systems.areas');
     }
 }
