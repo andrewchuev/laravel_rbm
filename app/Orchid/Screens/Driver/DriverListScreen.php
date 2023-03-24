@@ -8,6 +8,7 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Toast;
 
 class DriverListScreen extends Screen
 {
@@ -57,5 +58,14 @@ class DriverListScreen extends Screen
         return [
             DriverListLayout::class
         ];
+    }
+
+    public function remove(Driver $driver)
+    {
+        $driver->delete();
+
+        Toast::info(__('Driver was removed'));
+
+        return redirect()->route('platform.systems.drivers');
     }
 }
