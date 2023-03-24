@@ -6,6 +6,7 @@ use App\Models\Driver;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 use App\Models\Place;
@@ -30,8 +31,8 @@ class PlaceListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('name','Place name'),
-            TD::make('area','Area')->render(fn(Place $place) => $place->area->name),
+            TD::make('name','Place name')->filter(Input::make())->sort(),
+            TD::make('area','Area')->sort()->render(fn(Place $place) => $place->area->name),
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
