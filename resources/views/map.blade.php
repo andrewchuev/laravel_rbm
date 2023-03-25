@@ -8,7 +8,7 @@
     var mapLng = 35.138212;
 
     //47.839382, 35.138212
-    var mapDefaultZoom = 12;
+    var mapDefaultZoom = 10;
 
     function initialize_map() {
         map = new ol.Map({
@@ -52,11 +52,12 @@
 
 <?php
 $points = '';
+//print_r($visits);
 foreach ($visits as $visit) {
     if (!empty($visit['latitude']) && $visit['longitude']) {
         $points .= 'add_map_point(' . $visit['latitude'] . ', ' . $visit['longitude'] . '); ';
     }
-    //echo $driver['lat'];
+
 }
 ?>
 

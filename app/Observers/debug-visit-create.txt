@@ -1,0 +1,300 @@
+App\Models\Visit Object
+(
+    [connection:protected] => 
+    [table:protected] => 
+    [primaryKey:protected] => id
+    [keyType:protected] => int
+    [incrementing] => 1
+    [with:protected] => Array
+        (
+        )
+
+    [withCount:protected] => Array
+        (
+        )
+
+    [preventsLazyLoading] => 
+    [perPage:protected] => 15
+    [exists] => 1
+    [wasRecentlyCreated] => 1
+    [escapeWhenCastingToString:protected] => 
+    [attributes:protected] => Array
+        (
+            [driver_id] => 1
+            [place_id] => 1
+            [latitude] => 47.839382
+            [longitude] => 35.138212
+            [updated_at] => 2023-03-25 20:25:10
+            [created_at] => 2023-03-25 20:25:10
+            [id] => 4
+        )
+
+    [original:protected] => Array
+        (
+        )
+
+    [changes:protected] => Array
+        (
+        )
+
+    [casts:protected] => Array
+        (
+        )
+
+    [classCastCache:protected] => Array
+        (
+        )
+
+    [attributeCastCache:protected] => Array
+        (
+        )
+
+    [dates:protected] => Array
+        (
+        )
+
+    [dateFormat:protected] => 
+    [appends:protected] => Array
+        (
+        )
+
+    [dispatchesEvents:protected] => Array
+        (
+        )
+
+    [observables:protected] => Array
+        (
+        )
+
+    [relations:protected] => Array
+        (
+        )
+
+    [touches:protected] => Array
+        (
+        )
+
+    [timestamps] => 1
+    [hidden:protected] => Array
+        (
+        )
+
+    [visible:protected] => Array
+        (
+        )
+
+    [fillable:protected] => Array
+        (
+            [0] => driver_id
+            [1] => place_id
+            [2] => latitude
+            [3] => longitude
+            [4] => permissions
+        )
+
+    [guarded:protected] => Array
+        (
+            [0] => *
+        )
+
+)
+App\Models\Visit Object
+(
+    [connection:protected] => 
+    [table:protected] => 
+    [primaryKey:protected] => id
+    [keyType:protected] => int
+    [incrementing] => 1
+    [with:protected] => Array
+        (
+        )
+
+    [withCount:protected] => Array
+        (
+        )
+
+    [preventsLazyLoading] => 
+    [perPage:protected] => 15
+    [exists] => 1
+    [wasRecentlyCreated] => 1
+    [escapeWhenCastingToString:protected] => 
+    [attributes:protected] => Array
+        (
+            [driver_id] => 1
+            [place_id] => 1
+            [latitude] => 47.839782
+            [longitude] => 35.408212
+            [updated_at] => 2023-03-25 20:25:16
+            [created_at] => 2023-03-25 20:25:16
+            [id] => 5
+        )
+
+    [original:protected] => Array
+        (
+        )
+
+    [changes:protected] => Array
+        (
+        )
+
+    [casts:protected] => Array
+        (
+        )
+
+    [classCastCache:protected] => Array
+        (
+        )
+
+    [attributeCastCache:protected] => Array
+        (
+        )
+
+    [dates:protected] => Array
+        (
+        )
+
+    [dateFormat:protected] => 
+    [appends:protected] => Array
+        (
+        )
+
+    [dispatchesEvents:protected] => Array
+        (
+        )
+
+    [observables:protected] => Array
+        (
+        )
+
+    [relations:protected] => Array
+        (
+        )
+
+    [touches:protected] => Array
+        (
+        )
+
+    [timestamps] => 1
+    [hidden:protected] => Array
+        (
+        )
+
+    [visible:protected] => Array
+        (
+        )
+
+    [fillable:protected] => Array
+        (
+            [0] => driver_id
+            [1] => place_id
+            [2] => latitude
+            [3] => longitude
+            [4] => permissions
+        )
+
+    [guarded:protected] => Array
+        (
+            [0] => *
+        )
+
+)
+App\Models\Visit Object
+(
+    [connection:protected] => 
+    [table:protected] => 
+    [primaryKey:protected] => id
+    [keyType:protected] => int
+    [incrementing] => 1
+    [with:protected] => Array
+        (
+        )
+
+    [withCount:protected] => Array
+        (
+        )
+
+    [preventsLazyLoading] => 
+    [perPage:protected] => 15
+    [exists] => 1
+    [wasRecentlyCreated] => 1
+    [escapeWhenCastingToString:protected] => 
+    [attributes:protected] => Array
+        (
+            [driver_id] => 1
+            [place_id] => 1
+            [latitude] => 47.939382
+            [longitude] => 35.158212
+            [updated_at] => 2023-03-25 20:25:18
+            [created_at] => 2023-03-25 20:25:18
+            [id] => 6
+        )
+
+    [original:protected] => Array
+        (
+        )
+
+    [changes:protected] => Array
+        (
+        )
+
+    [casts:protected] => Array
+        (
+        )
+
+    [classCastCache:protected] => Array
+        (
+        )
+
+    [attributeCastCache:protected] => Array
+        (
+        )
+
+    [dates:protected] => Array
+        (
+        )
+
+    [dateFormat:protected] => 
+    [appends:protected] => Array
+        (
+        )
+
+    [dispatchesEvents:protected] => Array
+        (
+        )
+
+    [observables:protected] => Array
+        (
+        )
+
+    [relations:protected] => Array
+        (
+        )
+
+    [touches:protected] => Array
+        (
+        )
+
+    [timestamps] => 1
+    [hidden:protected] => Array
+        (
+        )
+
+    [visible:protected] => Array
+        (
+        )
+
+    [fillable:protected] => Array
+        (
+            [0] => driver_id
+            [1] => place_id
+            [2] => latitude
+            [3] => longitude
+            [4] => permissions
+        )
+
+    [guarded:protected] => Array
+        (
+            [0] => *
+        )
+
+)
