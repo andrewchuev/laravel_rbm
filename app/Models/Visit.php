@@ -16,6 +16,7 @@ class Visit extends Model
         'latitude',
         'longitude',
         'permissions',
+        'created_at',
     ];
 
     public function driver()
