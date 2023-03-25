@@ -358,7 +358,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'administrator','Administrator','{\"platform.index\": \"1\", \"platform.systems.areas\": \"1\", \"platform.systems.roles\": \"1\", \"platform.systems.users\": \"1\", \"platform.systems.places\": \"1\", \"platform.systems.visits\": \"1\", \"platform.systems.drivers\": \"1\", \"platform.systems.attachment\": \"1\"}','2023-03-21 14:35:00','2023-03-23 21:12:50'),(2,'dispatcher','Dispatcher','{\"platform.index\": \"1\", \"platform.systems.roles\": \"0\", \"platform.systems.users\": \"0\", \"platform.systems.attachment\": \"1\"}','2023-03-21 14:35:39','2023-03-21 14:35:39');
+INSERT INTO `roles` VALUES (1,'administrator','Administrator','{\"platform.index\": \"1\", \"platform.systems.map\": \"1\", \"platform.systems.areas\": \"1\", \"platform.systems.roles\": \"1\", \"platform.systems.users\": \"1\", \"platform.systems.places\": \"1\", \"platform.systems.visits\": \"1\", \"platform.systems.drivers\": \"1\", \"platform.systems.attachment\": \"1\"}','2023-03-21 14:35:00','2023-03-25 17:06:17'),(2,'dispatcher','Dispatcher','{\"platform.index\": \"1\", \"platform.systems.roles\": \"0\", \"platform.systems.users\": \"0\", \"platform.systems.attachment\": \"1\"}','2023-03-21 14:35:39','2023-03-21 14:35:39');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -432,4 +432,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-24 21:03:17
+-- Dump completed on 2023-03-25 17:12:41

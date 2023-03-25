@@ -24,6 +24,7 @@ use App\Orchid\Screens\Visit\VisitListScreen;
 use Tabuna\Breadcrumbs\Trail;
 use App\Orchid\Screens\Place\PlaceEditScreen;
 use App\Orchid\Screens\Area\AreaEditScreen;
+use App\Orchid\Screens\Map\MapScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,6 +136,9 @@ Route::screen('places/{place}/edit', PlaceEditScreen::class)->name('platform.sys
 // Platform > System > Visits
 Route::screen('visits', VisitListScreen::class)->name('platform.systems.visits')
     ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Visits'), route('platform.systems.visits')));
+
+
+Route::screen('map', MapScreen::class)->name('platform.systems.map');
 
 // Example...
 /*Route::screen('example', ExampleScreen::class)
