@@ -14,7 +14,7 @@ class VisitObserver
      */
     public function created(Visit $visit)
     {
-        file_put_contents(__DIR__ . '/debug-visit-create.txt', print_r($visit, true), FILE_APPEND);
+        //file_put_contents(__DIR__ . '/debug-visit-create.txt', print_r($visit, true), FILE_APPEND);
     }
 
     /**
