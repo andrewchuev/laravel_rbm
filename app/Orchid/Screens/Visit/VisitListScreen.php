@@ -16,7 +16,7 @@ class VisitListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'visits' => Visit::all()
+            'visits' => Visit::orderBy('created_at', 'desc')->get()
         ];
     }
 

@@ -4,14 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Visit;
 use Illuminate\Http\Request;
+use App\Models\Driver;
 
 class PointsController extends Controller
 {
     public function addPoint(Request $request) {
 
 
+        $telegramId =  $request->telegram_id;
 
-        $driverId =  $request->driver_id;
+        $driver = Driver::where('chat_id', $telegramId)->first();
+
+        if (empty($driver)) {
+            return 'Driver not found';
+        }
+
+        $driverId =  $driver->id;
         $placeId =  $request->place_id;
         $latitude =  $request->latitude;
         $longitude =  $request->longitude;
@@ -30,6 +38,7 @@ class PointsController extends Controller
           'place_id' => $placeId,
           'latitude' => $latitude,
           'longitude' => $longitude,
+          'telegram_id' => $telegramId,
         ];
     }
 }
