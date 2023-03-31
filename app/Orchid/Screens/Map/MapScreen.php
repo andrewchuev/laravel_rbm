@@ -16,7 +16,7 @@ class MapScreen extends Screen
     public function query(): iterable
     {
         return [
-            'visits' => Visit::get(['latitude', 'longitude'])
+            'visits' => Visit::with(['driver', 'place'])->get()
         ];
     }
 
