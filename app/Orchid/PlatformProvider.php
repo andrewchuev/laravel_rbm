@@ -82,7 +82,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('user')
                 ->route('platform.systems.users')
                 ->permission('platform.systems.users')
-                ->title(__('Access rights')),
+                ->title(__('Main menu')),
 
             Menu::make(__('Roles'))
                 ->icon('lock')
