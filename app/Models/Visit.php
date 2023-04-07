@@ -28,4 +28,9 @@ class Visit extends Model
     {
         return $this->hasOne('\App\Models\Place', 'id', 'place_id');
     }
+
+    public function area()
+    {
+        return $this->hasOne('\App\Models\Place', 'id', 'area_id');
+    }
 }

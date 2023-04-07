@@ -26,7 +26,7 @@ class VisitListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('driver','Driver')->render(fn(Visit $visit) => $visit->driver->name ?? ''),
+            TD::make('driver','Driver')->render(fn(Visit $visit) => $visit->driver->name . ' (' . $visit->driver->area->name . ')'),
             TD::make('place','Place')->render(fn(Visit $visit) => $visit->place->name),
             TD::make('latitude','latitude'),
             TD::make('longitude','longitude'),

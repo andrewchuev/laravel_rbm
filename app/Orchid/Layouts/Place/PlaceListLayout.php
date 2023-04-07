@@ -31,6 +31,7 @@ class PlaceListLayout extends Table
     protected function columns(): iterable
     {
         return [
+            TD::make('id','ID'),
             TD::make('name','Place name')->filter(Input::make())->sort(),
             TD::make('area','Area')->sort()->render(fn(Place $place) => $place->area->name),
             TD::make(__('Actions'))
