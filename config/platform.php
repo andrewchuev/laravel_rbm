@@ -114,8 +114,12 @@ return [
     */
 
     'resource'      => [
-        'stylesheets' => [],
-        'scripts'     => [],
+        'stylesheets' => [
+            'https://unpkg.com/leaflet@1.9.3/dist/leaflet.css'
+        ],
+        'scripts'     => [
+            'https://unpkg.com/leaflet@1.9.3/dist/leaflet.js'
+        ],
     ],
 
     /*

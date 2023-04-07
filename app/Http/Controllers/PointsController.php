@@ -16,6 +16,7 @@ class PointsController extends Controller
         $driver = Driver::where('chat_id', $telegramId)->first();
 
         if (empty($driver)) {
+            file_put_contents(__DIR__ . '/debug-new-drivers.txt', print_r($telegramId, true), FILE_APPEND);
             return 'Driver not found';
         }
 

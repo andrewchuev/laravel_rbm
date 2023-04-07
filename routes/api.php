@@ -26,3 +26,4 @@ Route::get('setpoint/{id}{latitude}{longitude}', function ($id, $latitude, $long
 
 Route::get('addpoint', [PointsController::class, 'addPoint' ]);
 Route::get('places', [PlacesController::class, 'getPlaces' ]);
+Route::get('visits', [PlacesController::class, 'getVisits' ]);
