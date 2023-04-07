@@ -18,7 +18,7 @@ class MapScreen extends Screen
     {
         return [
             //'visits' => Visit::with(['driver', 'place'])->get()
-            'visits' => Visit::select(DB::raw("driver_id, any_value(place_id) as place_id, any_value(latitude) as latitude, any_value(longitude) as longitude, max(created_at)"))->with(['driver', 'place'])->groupBy('driver_id')->get()
+            'visits' => Visit::select(DB::raw("driver_id, max(place_id) as place_id, max(latitude) as latitude, max(longitude) as longitude, max(created_at)"))->with(['driver', 'place'])->groupBy('driver_id')->get()
             //        $users = User::select("*", DB::raw("count(*) as user_count"))
             //
             //                        ->groupBy('status')
