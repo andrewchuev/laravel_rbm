@@ -137,7 +137,7 @@ CREATE TABLE `drivers` (
 
 LOCK TABLES `drivers` WRITE;
 /*!40000 ALTER TABLE `drivers` DISABLE KEYS */;
-INSERT INTO `drivers` VALUES (1,'Andrew','andrew@mail.com','+1111111111','405941565',NULL,'2023-03-26 19:55:03',34663,65734,4,0.00000000,0.00000000,35),(2,'Иванов Иван','driver@mail.com','+333333333','6273720116','2023-03-24 19:46:50','2023-04-08 10:01:41',54323,4567,1,47.87338800,35.04828600,1),(3,'Досаев Батырбек','driver@mail.com','+333333333','10000001','2023-03-25 20:23:28','2023-04-08 13:19:22',234234,345234,2,0.00000000,0.00000000,17),(4,'Жакапов Аман','aman@mail.com','+555555555','10000002','2023-03-31 08:06:30','2023-04-08 15:05:29',5555,5555,3,47.84804400,35.19231300,24),(5,'Генжебаев Мухит','genzhebaev_mukhit@mail.com','+7777777','10000003','2023-03-31 08:07:36','2023-04-08 15:02:46',777,777,4,47.87438800,35.05828600,39);
+INSERT INTO `drivers` VALUES (1,'Andrew','andrew@mail.com','+1111111111','405941565',NULL,'2023-04-08 15:25:25',34663,65734,4,47.85460200,35.13572800,3),(2,'Иванов Иван','driver@mail.com','+333333333','6273720116','2023-03-24 19:46:50','2023-04-08 15:25:17',54323,4567,1,47.86081500,35.19334200,12),(3,'Досаев Батырбек','driver@mail.com','+333333333','10000001','2023-03-25 20:23:28','2023-04-08 15:23:10',234234,345234,2,47.81765600,35.21803300,19),(4,'Жакапов Аман','aman@mail.com','+555555555','10000002','2023-03-31 08:06:30','2023-04-08 15:05:29',5555,5555,3,47.84804400,35.19231300,24),(5,'Генжебаев Мухит','genzhebaev_mukhit@mail.com','+7777777','10000003','2023-03-31 08:07:36','2023-04-08 15:02:46',777,777,4,47.87438800,35.05828600,39);
 /*!40000 ALTER TABLE `drivers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +361,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'administrator','Administrator','{\"platform.index\": \"1\", \"platform.systems.map\": \"1\", \"platform.systems.areas\": \"1\", \"platform.systems.roles\": \"1\", \"platform.systems.users\": \"1\", \"platform.systems.places\": \"1\", \"platform.systems.visits\": \"1\", \"platform.drivers\": \"1\", \"platform.systems.attachment\": \"1\"}','2023-03-21 14:35:00','2023-03-25 17:06:17'),(2,'dispatcher','Dispatcher','{\"platform.index\": \"1\", \"platform.systems.roles\": \"0\", \"platform.systems.users\": \"0\", \"platform.systems.attachment\": \"1\"}','2023-03-21 14:35:39','2023-03-21 14:35:39');
+INSERT INTO `roles` VALUES (1,'administrator','Administrator','{\"platform.index\": \"1\", \"platform.drivers\": \"1\", \"platform.systems.map\": \"1\", \"platform.systems.areas\": \"1\", \"platform.systems.roles\": \"1\", \"platform.systems.users\": \"1\", \"platform.systems.places\": \"1\", \"platform.systems.visits\": \"1\", \"platform.systems.attachment\": \"1\"}','2023-03-21 14:35:00','2023-04-08 15:21:28'),(2,'dispatcher','Dispatcher','{\"platform.index\": \"1\", \"platform.systems.roles\": \"0\", \"platform.systems.users\": \"0\", \"platform.systems.attachment\": \"1\"}','2023-03-21 14:35:39','2023-03-21 14:35:39');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -413,7 +413,7 @@ CREATE TABLE `visits` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -422,7 +422,7 @@ CREATE TABLE `visits` (
 
 LOCK TABLES `visits` WRITE;
 /*!40000 ALTER TABLE `visits` DISABLE KEYS */;
-INSERT INTO `visits` VALUES (15,5,39,47.87438800,35.05828600,'2023-04-08 15:02:46','2023-04-08 15:02:46'),(16,4,24,47.84804400,35.19231300,'2023-04-08 15:05:29','2023-04-08 15:05:29');
+INSERT INTO `visits` VALUES (15,5,39,47.87438800,35.05828600,'2023-04-08 15:02:46','2023-04-08 15:02:46'),(16,4,24,47.84804400,35.19231300,'2023-04-08 15:05:29','2023-04-08 15:05:29'),(17,3,19,47.81765600,35.21803300,'2023-04-08 15:23:10','2023-04-08 15:23:10'),(18,2,12,47.86081500,35.19334200,'2023-04-08 15:25:17','2023-04-08 15:25:17'),(19,1,3,47.85460200,35.13572800,'2023-04-08 15:25:25','2023-04-08 15:25:25');
 /*!40000 ALTER TABLE `visits` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -435,4 +435,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-08 12:08:16
+-- Dump completed on 2023-04-08 14:18:24
