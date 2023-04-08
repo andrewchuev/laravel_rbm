@@ -3,7 +3,6 @@
 namespace App\Orchid\Layouts\Driver;
 
 use App\Models\Driver;
-use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
@@ -30,18 +29,22 @@ class DriverListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('id','ID'),
-            TD::make('name','Driver name'),
-            TD::make('email','Email'),
-            TD::make('phone','Phone'),
-            TD::make('chat_id','Telegram ID'),
-            TD::make('car_no','Car No'),
-            TD::make('driver_no','Driver No'),
-            TD::make('area_id','Area')->render(fn(Driver $driver) => $driver->area->name),
+            TD::make('id', 'ID'),
+            TD::make('name', 'Имя')
+            ->width('200px')
+            ,
+            TD::make('', 'Email / Телефон / Telegram ID')
+                ->render(fn(Driver $driver) => "$driver->email<br>$driver->phone<br>$driver->chat_id")
+                ->width('150px'),
+            TD::make('', 'Участок / № автомобиля / № водителя')
+                ->render(fn(Driver $driver) => "{$driver->area->name}<br>$driver->car_no<br>$driver->driver_no")
+                ->width('150px'),
+            TD::make('', 'Последняя поездка')
+                ->render(fn(Driver $driver) => "{$driver->place->name}<br>$driver->latitude<br>{$driver->longitude}"),
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
-                ->render(fn (Driver $driver) => DropDown::make()
+                ->render(fn(Driver $driver) => DropDown::make()
                     ->icon('options-vertical')
                     ->list([
 

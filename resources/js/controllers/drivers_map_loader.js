@@ -11,10 +11,10 @@ export default class extends Controller {
 
         const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom    : 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        const request = new Request("/api/visits", {
+        const request = new Request("/api/drivers", {
             method : "GET",
             headers: {
                 "Accept"      : "application/json",
@@ -31,9 +31,9 @@ export default class extends Controller {
                 }
             })
             .then((response) => {
-                var visits = response;
+                var drivers = response;
 
-                visits.forEach(function (v) {
+                drivers.forEach(function (v) {
 
                     addMarker(v, map).then(() => {
                         console.log('markers load')
@@ -50,10 +50,10 @@ export default class extends Controller {
 
 }
 
-async function addMarker(v, map) {
+async function addMarker(d, map) {
     let markerColor = 'blue';
 
-    switch (v.place.id) {
+    switch (d.area_id) {
         case 1:
             markerColor = 'green';
             break;
@@ -62,6 +62,7 @@ async function addMarker(v, map) {
             break;
         case 3:
             markerColor = 'blue';
+            break;
         case 4:
             markerColor = 'red';
     }
@@ -76,21 +77,21 @@ async function addMarker(v, map) {
     });
 
     let markerOptions = {
-        title    : v.driver.name + ' (' + v.place.name + ')',
+        title    : d.name + ' (' + d.place.name + ')',
         clickable: true,
         draggable: false,
         icon     : icon
     };
 
-    let marker = L.marker([v.latitude, v.longitude], markerOptions);
-    //marker.title = v.driver.name;
+    let marker = L.marker([d.latitude, d.longitude], markerOptions);
+    //marker.title = d.driver.name;
     marker.addTo(map);
     let popupBody = `
-                        <b>Last Date:</b> ${v.last_date ?? ''}<br>
-                        <b>Driver Id:</b> ${v.driver.id ?? ''}<br>
-                        <b>Name:</b> ${v.driver.name ?? ''}<br>
-                        <b>Area:</b> ${v.driver.area_id ?? ''}<br>
-                        <b>Place:</b> ${v.place.name ?? ''}<br>
+                        <b>Last Date:</b> ${d.updated_at ?? ''}<br>
+                        <b>Driver Id:</b> ${d.id ?? ''}<br>
+                        <b>Name:</b> ${d.name ?? ''}<br>
+                        <b>Area:</b> ${d.area.name ?? ''}<br>
+                        <b>Place:</b> ${d.place.name ?? ''}<br>
                     `;
     marker.bindPopup(popupBody).openPopup();
 }

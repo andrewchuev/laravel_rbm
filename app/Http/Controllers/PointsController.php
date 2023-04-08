@@ -33,13 +33,13 @@ class PointsController extends Controller
         $visit->save();
 
 
+        $driver = Driver::find($driverId);
+        $driver->latitude = $latitude;
+        $driver->longitude = $longitude;
+        $driver->place_id = $placeId;
+        $driver->save();
 
-        return [
-          'driver_id' => $driverId,
-          'place_id' => $placeId,
-          'latitude' => $latitude,
-          'longitude' => $longitude,
-          'telegram_id' => $telegramId,
-        ];
+
+        return $driver;
     }
 }
