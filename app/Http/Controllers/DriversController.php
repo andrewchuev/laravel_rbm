@@ -12,4 +12,9 @@ class DriversController extends Controller
             ->whereNotNull(['latitude', 'longitude', 'place_id', 'area_id'])
             ->where('latitude', '!=', '0.00000000')->get();
     }
+
+    public function getDriver(int $id) {
+        //dd($id);
+        return Driver::find($id);
+    }
 }

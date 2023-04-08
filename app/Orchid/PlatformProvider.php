@@ -89,27 +89,27 @@ class PlatformProvider extends OrchidServiceProvider
                 ->route('platform.systems.roles')
                 ->permission('platform.systems.roles'),
 
-            Menu::make(__('Drivers'))
+            Menu::make(__('Водители'))
                 ->icon('grid')
-                ->route('platform.systems.drivers')
-                ->permission('platform.systems.drivers'),
+                ->route('platform.drivers')
+                ->permission('platform.drivers'),
 
-            Menu::make(__('Areas'))
+            Menu::make(__('Участки'))
                 ->icon('grid')
                 ->route('platform.systems.areas')
                 ->permission('platform.systems.areas'),
 
-            Menu::make(__('Places'))
+            Menu::make(__('Места'))
                 ->icon('grid')
                 ->route('platform.systems.places')
                 ->permission('platform.systems.places'),
 
-            Menu::make(__('Visits'))
+            Menu::make(__('Поездки'))
                 ->icon('grid')
                 ->route('platform.systems.visits')
                 ->permission('platform.systems.visits'),
 
-            Menu::make(__('Map'))
+            Menu::make(__('Карта'))
                 ->icon('map')
                 ->route('platform.systems.map')
                 ->permission('platform.systems.map'),
@@ -137,7 +137,7 @@ class PlatformProvider extends OrchidServiceProvider
             ItemPermission::group(__('System'))
                 ->addPermission('platform.systems.roles', __('Roles'))
                 ->addPermission('platform.systems.users', __('Users'))
-                ->addPermission('platform.systems.drivers', __('Drivers'))
+                ->addPermission('platform.drivers', __('Drivers'))
                 ->addPermission('platform.systems.visits', __('Visits'))
                 ->addPermission('platform.systems.places', __('Places'))
                 ->addPermission('platform.systems.areas', __('Areas'))

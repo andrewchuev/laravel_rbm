@@ -29,7 +29,7 @@ class MapScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Map';
+        return 'Карта. Последние поездки.';
     }
 
     /**
