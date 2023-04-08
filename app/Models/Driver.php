@@ -18,10 +18,18 @@ class Driver extends Model
         'car_no',
         'driver_no',
         'area_id',
+        'place_id',
+        'latitude',
+        'longitude',
     ];
 
     public function area()
     {
         return $this->hasOne('\App\Models\Area', 'id', 'area_id');
+    }
+
+    public function place()
+    {
+        return $this->hasOne('\App\Models\Place', 'id', 'place_id');
     }
 }

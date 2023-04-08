@@ -124,6 +124,9 @@ CREATE TABLE `drivers` (
   `driver_no` int NOT NULL,
   `car_no` int NOT NULL,
   `area_id` int NOT NULL,
+  `latitude` decimal(10,8) NOT NULL,
+  `longitude` decimal(11,8) NOT NULL,
+  `place_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -134,7 +137,7 @@ CREATE TABLE `drivers` (
 
 LOCK TABLES `drivers` WRITE;
 /*!40000 ALTER TABLE `drivers` DISABLE KEYS */;
-INSERT INTO `drivers` VALUES (1,'Andrew','andrew@mail.com','+1111111111','405941565',NULL,'2023-03-26 19:55:03',34663,65734,4),(2,'Иванов Иван','driver@mail.com','+333333333','1212121212121212','2023-03-24 19:46:50','2023-03-31 08:05:35',54323,4567,1),(3,'Досаев Батырбек','driver@mail.com','+333333333','121121','2023-03-25 20:23:28','2023-03-31 08:05:53',234234,345234,2),(4,'Жакапов Аман','aman@mail.com','+555555555','55555555','2023-03-31 08:06:30','2023-03-31 08:06:30',5555,5555,3),(5,'Генжебаев Мухит','genzhebaev_mukhit@mail.com','+7777777','777','2023-03-31 08:07:36','2023-03-31 08:07:36',777,777,4);
+INSERT INTO `drivers` VALUES (1,'Andrew','andrew@mail.com','+1111111111','405941565',NULL,'2023-03-26 19:55:03',34663,65734,4,0.00000000,0.00000000,35),(2,'Иванов Иван','driver@mail.com','+333333333','6273720116','2023-03-24 19:46:50','2023-04-08 10:01:41',54323,4567,1,47.87338800,35.04828600,1),(3,'Досаев Батырбек','driver@mail.com','+333333333','10000001','2023-03-25 20:23:28','2023-04-08 13:19:22',234234,345234,2,0.00000000,0.00000000,17),(4,'Жакапов Аман','aman@mail.com','+555555555','10000002','2023-03-31 08:06:30','2023-04-08 15:05:29',5555,5555,3,47.84804400,35.19231300,24),(5,'Генжебаев Мухит','genzhebaev_mukhit@mail.com','+7777777','10000003','2023-03-31 08:07:36','2023-04-08 15:02:46',777,777,4,47.87438800,35.05828600,39);
 /*!40000 ALTER TABLE `drivers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +182,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,7 +191,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2015_04_12_000000_create_orchid_users_table',1),(4,'2015_10_19_214424_create_orchid_roles_table',1),(5,'2015_10_19_214425_create_orchid_role_users_table',1),(6,'2016_08_07_125128_create_orchid_attachmentstable_table',1),(7,'2017_09_17_125801_create_notifications_table',1),(8,'2019_08_19_000000_create_failed_jobs_table',1),(9,'2019_12_14_000001_create_personal_access_tokens_table',1),(10,'2023_03_21_140805_create_drivers_table',2),(11,'2023_03_21_140827_create_places_table',2),(13,'2023_03_21_192645_create_visits_table',3),(14,'2023_03_23_200459_add_carno_and_driverno_to_drivers_table',4),(15,'2023_03_23_200750_change_chatid_type_in_drivers_table',5),(16,'2023_03_23_201302_create_areas_table',6),(17,'2023_03_23_201424_add_area_id_to_places_table',6),(18,'2023_03_23_202720_add_area_id_to_drivers_table',7),(19,'2023_03_23_202948_remove_place_id_from_drivers_table',8);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2015_04_12_000000_create_orchid_users_table',1),(4,'2015_10_19_214424_create_orchid_roles_table',1),(5,'2015_10_19_214425_create_orchid_role_users_table',1),(6,'2016_08_07_125128_create_orchid_attachmentstable_table',1),(7,'2017_09_17_125801_create_notifications_table',1),(8,'2019_08_19_000000_create_failed_jobs_table',1),(9,'2019_12_14_000001_create_personal_access_tokens_table',1),(10,'2023_03_21_140805_create_drivers_table',2),(11,'2023_03_21_140827_create_places_table',2),(13,'2023_03_21_192645_create_visits_table',3),(14,'2023_03_23_200459_add_carno_and_driverno_to_drivers_table',4),(15,'2023_03_23_200750_change_chatid_type_in_drivers_table',5),(16,'2023_03_23_201302_create_areas_table',6),(17,'2023_03_23_201424_add_area_id_to_places_table',6),(18,'2023_03_23_202720_add_area_id_to_drivers_table',7),(19,'2023_03_23_202948_remove_place_id_from_drivers_table',8),(21,'2023_04_08_093739_add_last_location_place_and_point_to_drivers',9);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -390,7 +393,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com',NULL,'$2y$10$MfhpeQjxFmsaoGWCKiU6PujOKt7YgXOyuMf.MvtV8joTnnq8zFkVi','5ifJmRrSxlfNF7KjZ87qd2F5POhPTk3QuvUSch2RY61owFzlDBQ7NeKsHaAk','2023-03-20 20:20:51','2023-03-21 15:13:45','{\"platform.index\": true, \"platform.systems.roles\": true, \"platform.systems.users\": true, \"platform.systems.attachment\": true}'),(2,'dispatcher1','dispatcher1@mail.com',NULL,'$2y$10$St5K6.OK/72l8CUaIrPJKuyIdiFobIJymRMrjW84X.adfuGM2lHvG','oB7AVmNmc98KThiV6XB7MdWTnqg5kBy2OsSgtXjxwYBEFbgTgJ0OxTleZnIv','2023-03-21 14:36:41','2023-03-21 14:36:41','{\"platform.index\": \"0\", \"platform.systems.roles\": \"0\", \"platform.systems.users\": \"0\", \"platform.systems.attachment\": \"0\"}');
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com',NULL,'$2y$10$MfhpeQjxFmsaoGWCKiU6PujOKt7YgXOyuMf.MvtV8joTnnq8zFkVi','1yju1jMGj9HdLlP6ZgH2TXskcbrLiX9L2qdTIOSSSf0U24L362Q303cpkGxS','2023-03-20 20:20:51','2023-03-21 15:13:45','{\"platform.index\": true, \"platform.systems.roles\": true, \"platform.systems.users\": true, \"platform.systems.attachment\": true}'),(2,'dispatcher1','dispatcher1@mail.com',NULL,'$2y$10$St5K6.OK/72l8CUaIrPJKuyIdiFobIJymRMrjW84X.adfuGM2lHvG','oB7AVmNmc98KThiV6XB7MdWTnqg5kBy2OsSgtXjxwYBEFbgTgJ0OxTleZnIv','2023-03-21 14:36:41','2023-03-21 14:36:41','{\"platform.index\": \"0\", \"platform.systems.roles\": \"0\", \"platform.systems.users\": \"0\", \"platform.systems.attachment\": \"0\"}');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -410,7 +413,7 @@ CREATE TABLE `visits` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,7 +422,7 @@ CREATE TABLE `visits` (
 
 LOCK TABLES `visits` WRITE;
 /*!40000 ALTER TABLE `visits` DISABLE KEYS */;
-INSERT INTO `visits` VALUES (4,2,1,47.83936400,35.13821200,'2023-03-25 20:25:10','2023-03-25 20:25:10'),(5,3,7,47.83958700,35.40821200,'2023-03-25 20:25:16','2023-03-25 20:25:16'),(6,1,18,47.82901100,35.14717200,'2023-03-25 20:25:18','2023-03-25 20:25:18'),(9,4,5,47.93937200,35.15822200,'2023-04-01 16:02:55','2023-04-01 16:03:05'),(10,5,2,47.93938400,35.25522200,'2023-04-01 16:04:02','2023-04-01 16:04:08');
+INSERT INTO `visits` VALUES (15,5,39,47.87438800,35.05828600,'2023-04-08 15:02:46','2023-04-08 15:02:46'),(16,4,24,47.84804400,35.19231300,'2023-04-08 15:05:29','2023-04-08 15:05:29');
 /*!40000 ALTER TABLE `visits` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -432,4 +435,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-01 13:13:29
+-- Dump completed on 2023-04-08 12:08:16

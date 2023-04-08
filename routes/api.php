@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DriversController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PointsController;
@@ -27,3 +28,4 @@ Route::get('setpoint/{id}{latitude}{longitude}', function ($id, $latitude, $long
 Route::get('addpoint', [PointsController::class, 'addPoint' ]);
 Route::get('places', [PlacesController::class, 'getPlaces' ]);
 Route::get('visits', [PlacesController::class, 'getVisits' ]);
+Route::get('drivers', [DriversController::class, 'getDrivers' ]);
