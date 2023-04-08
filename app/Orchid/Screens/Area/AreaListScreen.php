@@ -30,7 +30,7 @@ class AreaListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Areas List';
+        return 'Участки';
     }
 
     /**

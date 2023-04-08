@@ -6,6 +6,7 @@ use App\Models\Driver;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -31,8 +32,7 @@ class DriverListLayout extends Table
         return [
             TD::make('id', 'ID'),
             TD::make('name', 'Имя')
-            ->width('200px')
-            ,
+                ->width('200px'),
             TD::make('', 'Email / Телефон / Telegram ID')
                 ->render(fn(Driver $driver) => "$driver->email<br>$driver->phone<br>$driver->chat_id")
                 ->width('150px'),
@@ -41,6 +41,13 @@ class DriverListLayout extends Table
                 ->width('150px'),
             TD::make('', 'Последняя поездка')
                 ->render(fn(Driver $driver) => "{$driver->place->name}<br>$driver->latitude<br>{$driver->longitude}"),
+
+            TD::make('map', 'Карта')
+                ->render(fn(Driver $driver) => ModalToggle::make('Показать на карте')
+                    ->modal('showOnMapModal')
+                    ->icon('map')
+                    ->asyncParameters(['driver_id' => $driver->id])),
+
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
@@ -49,7 +56,7 @@ class DriverListLayout extends Table
                     ->list([
 
                         Link::make(__('Edit'))
-                            ->route('platform.systems.drivers.edit', $driver->id)
+                            ->route('platform.drivers.edit', $driver->id)
                             ->icon('pencil'),
 
                         Button::make(__('Delete'))

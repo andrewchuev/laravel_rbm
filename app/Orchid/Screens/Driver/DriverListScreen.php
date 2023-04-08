@@ -4,9 +4,13 @@ namespace App\Orchid\Screens\Driver;
 
 use App\Models\Driver;
 use App\Orchid\Layouts\Driver\DriverListLayout;
+use Illuminate\Http\Request;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
-use Orchid\Screen\Layout;
+use Orchid\Screen\Actions\ModalToggle;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Modal;
+use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Toast;
 
@@ -31,7 +35,7 @@ class DriverListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Drivers List';
+        return 'Водители';
     }
 
     /**
@@ -42,9 +46,10 @@ class DriverListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Link::make(__('Add'))
+            Link::make(__('Добавить'))
                 ->icon('plus')
-                ->route('platform.systems.drivers.create'),
+                ->route('platform.drivers.create'),
+
         ];
     }
 
@@ -56,16 +61,32 @@ class DriverListScreen extends Screen
     public function layout(): iterable
     {
         return [
+            Layout::modal('showOnMapModal', Layout::view('driver-map'))
+                ->title('Карта')
+                ->size(Modal::SIZE_LG)
+                ->withoutApplyButton()
+                ->rawClick()
+                ->async('asyncGetData'),
+
             DriverListLayout::class
         ];
     }
+
+
+    public function asyncGetData(string $driver_id): array
+    {
+        return [
+            'driver_id' => $driver_id,
+        ];
+    }
+
 
     public function remove(Driver $driver)
     {
         $driver->delete();
 
-        Toast::info(__('Driver was removed'));
+        Toast::info(__('Водитель удален.'));
 
-        return redirect()->route('platform.systems.drivers');
+        return redirect()->route('platform.drivers');
     }
 }

@@ -27,7 +27,7 @@ class VisitListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'VisitListScreen';
+        return 'Поездки';
     }
 
     /**

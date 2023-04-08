@@ -37,7 +37,7 @@ class AreaEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->area->exists ? 'Edit area' : 'Creating a new area';
+        return $this->area->exists ? 'Редактировать участок' : 'Создание нового участка';
     }
 
     /**
@@ -48,12 +48,12 @@ class AreaEditScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make('Create Area')
+            Button::make('Новый участок')
                 ->icon('pencil')
                 ->method('createOrUpdate')
                 ->canSee(!$this->area->exists),
 
-            Button::make('Update')
+            Button::make('Обновить')
                 ->icon('note')
                 ->method('createOrUpdate')
                 ->canSee($this->area->exists),

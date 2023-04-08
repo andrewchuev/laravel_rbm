@@ -93,19 +93,19 @@ Route::screen('roles', RoleListScreen::class)
 
 
 // Platform > System > Drivers
-Route::screen('drivers', DriverListScreen::class)->name('platform.systems.drivers')
-    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Drivers'), route('platform.systems.drivers')));
+Route::screen('drivers', DriverListScreen::class)->name('platform.drivers')
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Drivers'), route('platform.drivers')));
 
 // Platform > System > Drivers > Driver
 Route::screen('drivers/{driver}/edit', DriverEditScreen::class)
-    ->name('platform.systems.drivers.edit')
+    ->name('platform.drivers.edit')
     ->breadcrumbs(fn(Trail $trail, $user) => $trail
-        ->parent('platform.systems.drivers')
-        ->push($user->name, route('platform.systems.drivers.edit', $user)));
+        ->parent('platform.drivers')
+        ->push($user->name, route('platform.drivers.edit', $user)));
 
 // Platform > System > Drivers > Create
-Route::screen('drivers/create', DriverEditScreen::class)->name('platform.systems.drivers.create')
-    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.systems.drivers')->push(__('Create'), route('platform.systems.drivers.create')));
+Route::screen('drivers/create', DriverEditScreen::class)->name('platform.drivers.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.drivers')->push(__('Create'), route('platform.drivers.create')));
 
 // Platform > System > Areas
 Route::screen('areas', AreaListScreen::class)->name('platform.systems.areas')

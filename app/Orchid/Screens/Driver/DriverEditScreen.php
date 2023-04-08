@@ -37,7 +37,7 @@ class DriverEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->driver->exists ? 'Edit driver' : 'Creating a new driver';
+        return $this->driver->exists ? 'Редактирование водителя' : 'Создание нового водителя';
     }
 
     /**
@@ -48,17 +48,17 @@ class DriverEditScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Button::make('Create driver')
+            Button::make('Новый водитель')
                 ->icon('pencil')
                 ->method('createOrUpdate')
                 ->canSee(!$this->driver->exists),
 
-            Button::make('Update')
+            Button::make('Обновить')
                 ->icon('note')
                 ->method('createOrUpdate')
                 ->canSee($this->driver->exists),
 
-            Button::make('Remove')
+            Button::make('Удалить')
                 ->icon('trash')
                 ->method('remove')
                 ->canSee($this->driver->exists),
@@ -75,31 +75,26 @@ class DriverEditScreen extends Screen
         return [
             Layout::rows([
                 Input::make('driver.name')
-                    ->title('Driver Name')
-                    ->placeholder('Enter Driver Name'),
+                    ->title('Имя'),
 
                 Input::make('driver.email')
                     ->title('Email')
                     ->placeholder('Driver Email'),
 
                 Input::make('driver.phone')
-                    ->title('Phone')
-                    ->placeholder('Driver Phone'),
+                    ->title('Телефон'),
 
                 Input::make('driver.chat_id')
-                    ->title('Telegram ID')
-                    ->placeholder('Driver Telegram ID'),
+                    ->title('Telegram ID'),
 
                 Input::make('driver.car_no')
-                    ->title('Car No')
-                    ->placeholder('Car No'),
+                    ->title('№ авто'),
 
                 Input::make('driver.driver_no')
-                    ->title('Driver No')
-                    ->placeholder('Driver No'),
+                    ->title('№ водителя'),
 
                 Select::make('driver.area_id')
-                    ->title('Area')
+                    ->title('Участок')
                     ->fromModel(Area::class, 'name'),
 
             ])
@@ -110,17 +105,17 @@ class DriverEditScreen extends Screen
     {
         $driver->fill($request->get('driver'))->save();
 
-        Alert::info('Driver was saved.');
+        Alert::info('Водитель сохранен.');
 
-        return redirect()->route('platform.systems.drivers');
+        return redirect()->route('platform.drivers');
     }
 
     public function remove(Driver $driver)
     {
         $driver->delete();
 
-        Toast::info(__('Driver was removed'));
+        Toast::info(__('Водитель удален.'));
 
-        return redirect()->route('platform.systems.drivers');
+        return redirect()->route('platform.drivers');
     }
 }

@@ -29,3 +29,4 @@ Route::get('addpoint', [PointsController::class, 'addPoint' ]);
 Route::get('places', [PlacesController::class, 'getPlaces' ]);
 Route::get('visits', [PlacesController::class, 'getVisits' ]);
 Route::get('drivers', [DriversController::class, 'getDrivers' ]);
+Route::get('driver/{id}', [DriversController::class, 'getDriver' ]);
