@@ -2,29 +2,22 @@
 
 declare(strict_types=1);
 
-use App\Orchid\Screens\Examples\ExampleCardsScreen;
-use App\Orchid\Screens\Examples\ExampleChartsScreen;
-use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
-use App\Orchid\Screens\Examples\ExampleFieldsScreen;
-use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
-use App\Orchid\Screens\Examples\ExampleScreen;
-use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\Area\AreaEditScreen;
 use App\Orchid\Screens\Area\AreaListScreen;
+use App\Orchid\Screens\Driver\DriverEditScreen;
+use App\Orchid\Screens\Driver\DriverListScreen;
+use App\Orchid\Screens\Map\MapScreen;
+use App\Orchid\Screens\Place\PlaceEditScreen;
+use App\Orchid\Screens\Place\PlaceListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
-use App\Orchid\Screens\Driver\DriverListScreen;
-use App\Orchid\Screens\Place\PlaceListScreen;
-use App\Orchid\Screens\Driver\DriverEditScreen;
-use Illuminate\Support\Facades\Route;
 use App\Orchid\Screens\Visit\VisitListScreen;
+use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
-use App\Orchid\Screens\Place\PlaceEditScreen;
-use App\Orchid\Screens\Area\AreaEditScreen;
-use App\Orchid\Screens\Map\MapScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,11 +83,9 @@ Route::screen('roles', RoleListScreen::class)
         ->parent('platform.index')
         ->push(__('Roles'), route('platform.systems.roles')));
 
-
-
 // Platform > System > Drivers
 Route::screen('drivers', DriverListScreen::class)->name('platform.drivers')
-    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Drivers'), route('platform.drivers')));
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Водители'), route('platform.drivers')));
 
 // Platform > System > Drivers > Driver
 Route::screen('drivers/{driver}/edit', DriverEditScreen::class)
@@ -105,40 +96,35 @@ Route::screen('drivers/{driver}/edit', DriverEditScreen::class)
 
 // Platform > System > Drivers > Create
 Route::screen('drivers/create', DriverEditScreen::class)->name('platform.drivers.create')
-    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.drivers')->push(__('Create'), route('platform.drivers.create')));
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.drivers')->push(__('Создать'), route('platform.drivers.create')));
 
 // Platform > System > Areas
-Route::screen('areas', AreaListScreen::class)->name('platform.systems.areas')
-    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Areas'), route('platform.systems.areas')));
+Route::screen('areas', AreaListScreen::class)->name('platform.areas')
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Участки'), route('platform.areas')));
 // Platform > System > Areas > Create
-Route::screen('areas/create', AreaEditScreen::class)->name('platform.systems.areas.create')
-    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.systems.areas')->push(__('Create'), route('platform.systems.areas.create')));
-
+Route::screen('areas/create', AreaEditScreen::class)->name('platform.areas.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.areas')->push(__('Создать'), route('platform.areas.create')));
 
 // Platform > System > Areas > Area
-Route::screen('areas/{area}/edit', AreaEditScreen::class)->name('platform.systems.areas.edit')
-    ->breadcrumbs(fn(Trail $trail, $user) => $trail->parent('platform.systems.areas')->push($user->name, route('platform.systems.areas.edit', $user)));
+Route::screen('areas/{area}/edit', AreaEditScreen::class)->name('platform.areas.edit')
+    ->breadcrumbs(fn(Trail $trail, $user) => $trail->parent('platform.areas')->push($user->name, route('platform.areas.edit', $user)));
 
 // Platform > System > Places
-Route::screen('places', PlaceListScreen::class)->name('platform.systems.places')
-    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Places'), route('platform.systems.places')));
+Route::screen('places', PlaceListScreen::class)->name('platform.places')
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Места'), route('platform.places')));
 // Platform > System > Places > Create
-Route::screen('places/create', PlaceEditScreen::class)->name('platform.systems.places.create')
-    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.systems.places')->push(__('Create'), route('platform.systems.places.create')));
-
+Route::screen('places/create', PlaceEditScreen::class)->name('platform.places.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.places')->push(__('Создать'), route('platform.places.create')));
 
 // Platform > System > Places > Place
-Route::screen('places/{place}/edit', PlaceEditScreen::class)->name('platform.systems.places.edit')
-    ->breadcrumbs(fn(Trail $trail, $user) => $trail->parent('platform.systems.places')->push($user->name, route('platform.systems.places.edit', $user)));
-
-
+Route::screen('places/{place}/edit', PlaceEditScreen::class)->name('platform.places.edit')
+    ->breadcrumbs(fn(Trail $trail, $user) => $trail->parent('platform.places')->push($user->name, route('platform.places.edit', $user)));
 
 // Platform > System > Visits
-Route::screen('visits', VisitListScreen::class)->name('platform.systems.visits')
-    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Visits'), route('platform.systems.visits')));
+Route::screen('visits', VisitListScreen::class)->name('platform.visits')
+    ->breadcrumbs(fn(Trail $trail) => $trail->parent('platform.index')->push(__('Поездки'), route('platform.visits')));
 
-
-Route::screen('map', MapScreen::class)->name('platform.systems.map');
+Route::screen('map', MapScreen::class)->name('platform.map');
 
 // Example...
 /*Route::screen('example', ExampleScreen::class)

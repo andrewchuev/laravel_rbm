@@ -10,6 +10,10 @@ class Driver extends Model
 {
     use HasFactory, AsSource;
 
+    protected $casts = [
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+        'created_at' => 'datetime:Y-m-d H:i:s',
+    ];
     protected $fillable = [
         'name',
         'email',

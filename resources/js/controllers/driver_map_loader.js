@@ -61,7 +61,7 @@ export default class extends Controller {
 }
 
 async function addMarker(d, map) {
-    let markerColor = 'red';
+    let markerColor = 'blue';
 
     let icon = new L.Icon({
         iconUrl    : `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${markerColor}.png`,

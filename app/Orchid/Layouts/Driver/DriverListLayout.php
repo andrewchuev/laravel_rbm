@@ -33,12 +33,11 @@ class DriverListLayout extends Table
             TD::make('id', 'ID'),
             TD::make('name', 'Имя')
                 ->width('200px'),
-            TD::make('', 'Email / Телефон / Telegram ID')
+            TD::make('', " Email \n Телефон \n Telegram ID ")
                 ->render(fn(Driver $driver) => "$driver->email<br>$driver->phone<br>$driver->chat_id")
-                ->width('150px'),
+                ->alignCenter(),
             TD::make('', 'Участок / № автомобиля / № водителя')
-                ->render(fn(Driver $driver) => "{$driver->area->name}<br>$driver->car_no<br>$driver->driver_no")
-                ->width('150px'),
+                ->render(fn(Driver $driver) => "{$driver->area->name}<br>$driver->car_no<br>$driver->driver_no"),
             TD::make('', 'Последняя поездка')
                 ->render(fn(Driver $driver) => "{$driver->place->name}<br>$driver->latitude<br>{$driver->longitude}"),
 
@@ -55,13 +54,13 @@ class DriverListLayout extends Table
                     ->icon('options-vertical')
                     ->list([
 
-                        Link::make(__('Edit'))
+                        Link::make(__('Изменить'))
                             ->route('platform.drivers.edit', $driver->id)
                             ->icon('pencil'),
 
-                        Button::make(__('Delete'))
+                        Button::make(__('Удалить'))
                             ->icon('trash')
-                            ->confirm(__('Once the driver is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
+                            ->confirm(__('Вы действительно хотите удалить водителя?'))
                             ->method('remove', [
                                 'id' => $driver->id,
                             ]),

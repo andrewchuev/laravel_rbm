@@ -43,7 +43,7 @@ class AreaListScreen extends Screen
         return [
             Link::make(__('Add'))
                 ->icon('plus')
-                ->route('platform.systems.areas.create'),
+                ->route('platform.areas.create'),
         ];
     }
 
@@ -65,6 +65,6 @@ class AreaListScreen extends Screen
 
         Toast::info(__('Area was removed'));
 
-        return redirect()->route('platform.systems.areas');
+        return redirect()->route('platform.areas');
     }
 }
