@@ -88,7 +88,7 @@ class AreaEditScreen extends Screen
 
         Alert::info('Area was saved.');
 
-        return redirect()->route('platform.systems.areas');
+        return redirect()->route('platform.areas');
     }
 
     public function remove(Area $area)
@@ -97,6 +97,6 @@ class AreaEditScreen extends Screen
 
         Toast::info(__('Area was removed'));
 
-        return redirect()->route('platform.systems.areas');
+        return redirect()->route('platform.areas');
     }
 }

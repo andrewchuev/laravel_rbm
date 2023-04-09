@@ -42,7 +42,7 @@ class PlaceListLayout extends Table
                     ->list([
 
                         Link::make(__('Edit'))
-                            ->route('platform.systems.places.edit', $place->id)
+                            ->route('platform.places.edit', $place->id)
                             ->icon('pencil'),
 
                         Button::make(__('Delete'))

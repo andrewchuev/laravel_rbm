@@ -88,6 +88,6 @@ class PlaceEditScreen extends Screen
 
         Alert::info('Place was saved.');
 
-        return redirect()->route('platform.systems.places');
+        return redirect()->route('platform.places');
     }
 }

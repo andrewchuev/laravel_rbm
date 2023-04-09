@@ -42,7 +42,7 @@ class PlaceListScreen extends Screen
         return [
             Link::make(__('Add'))
                 ->icon('plus')
-                ->route('platform.systems.places.create'),
+                ->route('platform.places.create'),
         ];
     }
 

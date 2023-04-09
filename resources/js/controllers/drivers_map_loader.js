@@ -83,8 +83,13 @@ async function addMarker(d, map) {
         icon     : icon
     };
 
+    //47.838182, 35.138694 Фестивальная
     let marker = L.marker([d.latitude, d.longitude], markerOptions);
-    //marker.title = d.driver.name;
+    let from = {lat: 47.838182, lng: 35.138694};
+    var to = {lat: d.latitude, lng: d.longitude};
+    var distance = (map.distance(from, to) / 1000).toFixed(1);
+
+
     marker.addTo(map);
     let popupBody = `
                         <b>Last Date:</b> ${d.updated_at ?? ''}<br>
@@ -92,6 +97,7 @@ async function addMarker(d, map) {
                         <b>Name:</b> ${d.name ?? ''}<br>
                         <b>Area:</b> ${d.area.name ?? ''}<br>
                         <b>Place:</b> ${d.place.name ?? ''}<br>
+                        <b>Distance:</b> ${distance}<br>
                     `;
     marker.bindPopup(popupBody).openPopup();
 }

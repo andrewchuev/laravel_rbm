@@ -38,7 +38,7 @@ class AreaListLayout extends Table
                     ->list([
 
                         Link::make(__('Edit'))
-                            ->route('platform.systems.areas.edit', $area->id)
+                            ->route('platform.areas.edit', $area->id)
                             ->icon('pencil'),
 
                         Button::make(__('Delete'))

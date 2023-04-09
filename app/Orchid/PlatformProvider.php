@@ -96,23 +96,23 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make(__('Участки'))
                 ->icon('grid')
-                ->route('platform.systems.areas')
-                ->permission('platform.systems.areas'),
+                ->route('platform.areas')
+                ->permission('platform.areas'),
 
             Menu::make(__('Места'))
                 ->icon('grid')
-                ->route('platform.systems.places')
-                ->permission('platform.systems.places'),
+                ->route('platform.places')
+                ->permission('platform.places'),
 
             Menu::make(__('Поездки'))
                 ->icon('grid')
-                ->route('platform.systems.visits')
-                ->permission('platform.systems.visits'),
+                ->route('platform.visits')
+                ->permission('platform.visits'),
 
             Menu::make(__('Карта'))
                 ->icon('map')
-                ->route('platform.systems.map')
-                ->permission('platform.systems.map'),
+                ->route('platform.map')
+                ->permission('platform.map'),
         ];
     }
 
@@ -137,11 +137,11 @@ class PlatformProvider extends OrchidServiceProvider
             ItemPermission::group(__('System'))
                 ->addPermission('platform.systems.roles', __('Roles'))
                 ->addPermission('platform.systems.users', __('Users'))
-                ->addPermission('platform.drivers', __('Drivers'))
-                ->addPermission('platform.systems.visits', __('Visits'))
-                ->addPermission('platform.systems.places', __('Places'))
-                ->addPermission('platform.systems.areas', __('Areas'))
-                ->addPermission('platform.systems.map', __('Map')),
+                ->addPermission('platform.drivers', __('Водители'))
+                ->addPermission('platform.visits', __('Поездки'))
+                ->addPermission('platform.places', __('Места'))
+                ->addPermission('platform.areas', __('Участки'))
+                ->addPermission('platform.map', __('Карта')),
         ];
     }
 }
