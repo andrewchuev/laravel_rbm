@@ -39,7 +39,7 @@ class DriverListLayout extends Table
             TD::make('', 'Участок / № автомобиля / № водителя')
                 ->render(fn(Driver $driver) => "{$driver->area->name}<br>$driver->car_no<br>$driver->driver_no"),
             TD::make('', 'Последняя поездка')
-                ->render(fn(Driver $driver) => "{$driver->place->name}<br>$driver->latitude<br>{$driver->longitude}"),
+                ->render(fn(Driver $driver) => "{$driver->place->name}<br>{$driver->updated_at->format('Y-d-m')}<br>{$driver->updated_at->format('H:i')}"),
 
             TD::make('map', 'Карта')
                 ->render(fn(Driver $driver) => ModalToggle::make('Показать на карте')

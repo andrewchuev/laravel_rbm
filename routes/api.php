@@ -30,3 +30,4 @@ Route::get('places', [PlacesController::class, 'getPlaces' ]);
 Route::get('visits', [PlacesController::class, 'getVisits' ]);
 Route::get('drivers', [DriversController::class, 'getDrivers' ]);
 Route::get('driver/{id}', [DriversController::class, 'getDriver' ]);
+Route::get('login/{telegram_id}', [DriversController::class, 'getPlaces' ]);
