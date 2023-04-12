@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-geometryutil@0.10.1/src/leaflet.geometryutil.min.js"></script>
+    <style>
+        body {
+            color: #fff;
+            padding: 20px;
+            font-family: arial;
+            background: #000;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .result {
+            padding: 30px;
+            text-align: center;
+        }
+
+        #map {
+            width: 100%;
+            height: calc(100vh - 100px);
+        }
+    </style>
+</head>
+
+<body>
+<div class="result">
+    Distance (in meters):
+
+    <!-- displaying the distance here:  -->
+    <span id="length"></span>
+</div>
+<div id="map"></div>
+
+<script>
+    let mapOptions = {
+        center: [47.835821, 35.134981],
+        zoom  : 13
+    }
+    let map   = new L.map('map', mapOptions),
+        layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+    map.addLayer(layer);
+
+
+    let
+        _firstLatLng,
+        _secondLatLng,
+        _polyline,
+        merkerA = null,
+        markerB = null;
+
+
+    let markersLayer = new L.LayerGroup();
+    //{ lat: 17.40413539149463, lng: 78.45150479802734 }
+    //47.835821, 35.134981
+    //47.438583, 35.283849
+    var from = {lat: 47.835821, lng: 35.134981};
+    var to = {lat: 47.438583, lng: 35.283849};
+
+    var distance = map.distance(from, to);
+    console.log('dictanse: ', (distance / 1000).toFixed(2));
+
+    map.on('click', function (e) {
+        if (!_firstLatLng) {
+
+            //get first point latitude and longitude
+            _firstLatLng = e.latlng;
+            console.log(e.latlng);
+            //create first marker and add popup
+            markerA = L.marker(_firstLatLng).addTo(map).bindPopup('Point A<br/>' + e.latlng).openPopup();
+
+
+        } else if (!_secondLatLng) {
+            //get second point latitude and longitude
+            _secondLatLng = e.latlng;
+
+
+            //create second marker and add popup
+            markerB = L.marker(_secondLatLng).addTo(map).bindPopup('Point B<br/>' + e.latlng).openPopup();
+
+
+            //draw a line between two points
+            _polyline = L.polyline([_firstLatLng, _secondLatLng], {
+                color: 'red'
+            });
+
+            //add the line to the map
+            _polyline.addTo(map);
+
+            //get the distance between two points
+            let _length = map.distance(_firstLatLng, _secondLatLng);
+
+            //display the result
+            document.getElementById('length').innerHTML = _length;
+
+        } else {
+
+            //if already we have two points first we remove the polyline object
+            if (_polyline) {
+                map.removeLayer(_polyline);
+                _polyline = null;
+            }
+
+            //get new point latitude and longitude
+            _firstLatLng = e.latlng;
+
+            //remove previous markers and values for second point
+            map.removeLayer(markerA);
+            map.removeLayer(markerB);
+            _secondLatLng = null;
+
+            //create new marker and add it to map
+            markerA = L.marker(_firstLatLng).addTo(map).bindPopup('Point A<br/>' + e.latlng).openPopup();
+
+        }
+    });
+</script>
+</body>
+
+</html>

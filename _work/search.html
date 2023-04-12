@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+
+    <link href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <title>Document</title>
+
+    <style>
+        #map {
+            width: 800px;
+            height: 600px;
+        }
+
+        #search {
+            width: 100px;
+            height: 50px;
+            background-color: #0b4e58;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div id="search">
+
+</div>
+
+<div id="map"></div>
+
+<script>
+    //Example from https://github.com/perliedman/leaflet-control-geocoder
+    var map = L.map('map').setView([42.697765, -73.108005], 3);
+    var osm = new L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+
+    var geocoder = L.Control.geocoder({
+        defaultMarkGeocode: true
+    })
+        .on('markgeocode', function(e) {
+            console.log(e.geocode.center);
+            var bbox = e.geocode.bbox;
+            var poly = L.polygon([
+                bbox.getSouthEast(),
+                bbox.getNorthEast(),
+                bbox.getNorthWest(),
+                bbox.getSouthWest()
+            ]).addTo(map);
+            map.fitBounds(poly.getBounds());
+        })
+        .addTo(map);
+
+</script>
+</body>
+</html>
