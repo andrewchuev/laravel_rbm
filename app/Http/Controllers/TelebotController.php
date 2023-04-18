@@ -29,6 +29,7 @@ class TelebotController extends Controller
 
     public function callbackHandler($json)
     {
+        $id = $json['callback_query']['from']['id'];
         $fields = 'callback_query_id=' . $json['callback_query']['id'] . '&text=';
         $this->curl('answerCallbackQuery', $fields);
 
@@ -36,6 +37,13 @@ class TelebotController extends Controller
 
         $place     = explode('_', $json['callback_query']['data']);
         $placeName = 'Вы выбрали место: ' . $place[2] . "\n\nТеперь нажмите кнопку 'Отправить геолокацию' и подтвердите отправку.\n\n";
+
+        $driver = Driver::where('chat_id', $id)->first();
+
+        if ($driver) {
+            $driver->place_id = $place[1];
+            $driver->save();
+        }
 
         $keyboard = [
             "keyboard"          =>
@@ -94,9 +102,11 @@ class TelebotController extends Controller
 
                 $fields = 'chat_id=' . $id . '&text=' . rawurlencode('Данные водителя требуют подтвержденияю Обратитесь к администратору');
                 $this->curl('sendMessage', $fields);
+            } else {
+                $this->sendPlaces($id);
             }
 
-            $this->sendPlaces($id);
+
         }
     }
 
@@ -110,7 +120,13 @@ class TelebotController extends Controller
         $lat = $location['latitude'];
         $lng = $location['longitude'];
 
-        //$driver = Driver::where('chat_id')
+        $driver = Driver::where('chat_id', $id)->first();
+
+        if ($driver) {
+            $driver->latitude = $lat;
+            $driver->longitude = $lng;
+            $driver->save();
+        }
 
 
         $keyboard = [
@@ -173,16 +189,27 @@ class TelebotController extends Controller
     public function createNewDriver($json)
     {
         $id = $json['message']['from']['id'];
-        $driverName = $json['message']['from']['first_name'] ?? '' . ' ' . $json['message']['from']['last_name'] ?? '' . '(' . $json['message']['from']['username'] ?? '' . ')';
+
+        $driver = Driver::where('chat_id', $id)->first();
+
+        if (!empty($driver)) {
+            return false;
+        }
+
+        //$driverName = $json['message']['from']['first_name'] ?? '' . ' ' . $json['message']['from']['last_name'] ?? '' . '(' . $json['message']['from']['username'] ?? '' . ')';
+        $driverName = $json['message']['from']['first_name'];
 
         $driver = new Driver();
         $driver->name = $driverName;
         $driver->email = 'udefined@mail.com';
         $driver->phone = '';
         $driver->chat_id = $id;
-        $driver->driver_no = '';
-        $driver->car_no = '';
-        $driver->area_id = '';
+        $driver->driver_no = 0;
+        $driver->car_no = 0;
+        $driver->area_id = 0;
+        $driver->latitude = 0.0;
+        $driver->longitude = 0.0;
+        $driver->place_id = 0;
         $driver->save();
     }
 }
