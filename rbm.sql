@@ -121,12 +121,12 @@ CREATE TABLE `drivers` (
   `chat_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `driver_no` int NOT NULL,
-  `car_no` int NOT NULL,
-  `area_id` int NOT NULL,
-  `latitude` decimal(10,8) NOT NULL,
-  `longitude` decimal(11,8) NOT NULL,
-  `place_id` int NOT NULL,
+  `driver_no` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `car_no` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `area_id` int NOT NULL DEFAULT '0',
+  `latitude` decimal(10,8) NOT NULL DEFAULT '0.00000000',
+  `longitude` decimal(11,8) NOT NULL DEFAULT '0.00000000',
+  `place_id` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -137,7 +137,7 @@ CREATE TABLE `drivers` (
 
 LOCK TABLES `drivers` WRITE;
 /*!40000 ALTER TABLE `drivers` DISABLE KEYS */;
-INSERT INTO `drivers` VALUES (1,'Andrew','andrew@mail.com','+1111111111','405941565',NULL,'2023-04-14 22:39:07',34663,65734,4,47.83139400,35.13762500,32),(2,'Иванов Иван','driver@mail.com','+333333333','6273720116','2023-03-24 19:46:50','2023-04-08 15:25:17',54323,4567,1,47.86081500,35.19334200,12),(3,'Досаев Батырбек','driver@mail.com','+333333333','10000001','2023-03-25 20:23:28','2023-04-08 15:23:10',234234,345234,2,47.81765600,35.21803300,19),(4,'Жакапов Аман','aman@mail.com','+555555555','10000002','2023-03-31 08:06:30','2023-04-08 15:05:29',5555,5555,3,47.84804400,35.19231300,24),(5,'Генжебаев Мухит','genzhebaev_mukhit@mail.com','+7777777','10000003','2023-03-31 08:07:36','2023-04-08 15:02:46',777,777,4,47.87438800,35.05828600,39);
+INSERT INTO `drivers` VALUES (1,'Andrew','andrew@mail.com','+1111111111','405941565',NULL,'2023-04-14 22:39:07','34663','65734',4,47.83139400,35.13762500,32),(2,'Иванов Иван','driver@mail.com','+333333333','6273720116','2023-03-24 19:46:50','2023-04-08 15:25:17','54323','4567',1,47.86081500,35.19334200,12),(3,'Досаев Батырбек','driver@mail.com','+333333333','10000001','2023-03-25 20:23:28','2023-04-08 15:23:10','234234','345234',2,47.81765600,35.21803300,19),(4,'Жакапов Аман','aman@mail.com','+555555555','10000002','2023-03-31 08:06:30','2023-04-08 15:05:29','5555','5555',3,47.84804400,35.19231300,24),(5,'Генжебаев Мухит','genzhebaev_mukhit@mail.com','+7777777','10000003','2023-03-31 08:07:36','2023-04-08 15:02:46','777','777',4,47.87438800,35.05828600,39);
 /*!40000 ALTER TABLE `drivers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -435,4 +435,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-18 16:47:34
+-- Dump completed on 2023-04-18 18:51:55
