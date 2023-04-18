@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DriversController;
+use App\Http\Controllers\TelebotController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PointsController;
@@ -31,3 +32,5 @@ Route::get('visits', [PlacesController::class, 'getVisits' ]);
 Route::get('drivers', [DriversController::class, 'getDrivers' ]);
 Route::get('driver/{id}', [DriversController::class, 'getDriver' ]);
 Route::get('login/{telegram_id}', [DriversController::class, 'getPlaces' ]);
+
+Route::any('telebot', [TelebotController::class, 'index' ]);
