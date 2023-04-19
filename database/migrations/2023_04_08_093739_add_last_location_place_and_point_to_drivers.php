@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('drivers', function (Blueprint $table) {
-            $table->decimal('latitude', 10, 8);
-            $table->decimal('longitude', 11, 8);
+            $table->decimal('lat', 10, 8);
+            $table->decimal('lng', 11, 8);
             $table->integer('place_id');
         });
     }
@@ -28,8 +28,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('drivers', function (Blueprint $table) {
-            $table->dropColumn('latitude');
-            $table->dropColumn('longitude');
+            $table->dropColumn('lat');
+            $table->dropColumn('lng');
             $table->dropColumn('place_id');
         });
     }

@@ -117,14 +117,14 @@ class TelebotController extends Controller
         $id = $json['message']['from']['id'];
 
         $location = $json['message']['location'];
-        $lat = $location['latitude'];
-        $lng = $location['longitude'];
+        $lat = $location['lat'];
+        $lng = $location['lng'];
 
         $driver = Driver::where('chat_id', $id)->first();
 
         if ($driver) {
-            $driver->latitude = $lat;
-            $driver->longitude = $lng;
+            $driver->lat = $lat;
+            $driver->lng = $lng;
             $driver->save();
         }
 
@@ -207,8 +207,8 @@ class TelebotController extends Controller
         $driver->driver_no = 0;
         $driver->car_no = 0;
         $driver->area_id = 0;
-        $driver->latitude = 0.0;
-        $driver->longitude = 0.0;
+        $driver->lat = 0.0;
+        $driver->lng = 0.0;
         $driver->place_id = 0;
         $driver->save();
     }

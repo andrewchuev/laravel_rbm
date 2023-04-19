@@ -37,7 +37,7 @@ export default class extends Controller {
 
 
                 console.log(driver);
-                var map = L.map('driver-map').setView([driver.latitude, driver.longitude], 16);
+                var map = L.map('driver-map').setView([driver.lat, driver.lng], 16);
 
                 const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom    : 19,
@@ -79,7 +79,7 @@ async function addMarker(d, map) {
         icon     : icon
     };
 
-    let marker = L.marker([d.latitude, d.longitude], markerOptions);
+    let marker = L.marker([d.lat, d.lng], markerOptions);
     //marker.title = d.driver.name;
     marker.addTo(map);
     /*let popupBody = `

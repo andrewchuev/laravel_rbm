@@ -14,7 +14,7 @@ class PlacesController extends Controller
     }
 
     public function getVisits() {
-        return Visit::select(DB::raw("driver_id, max(place_id) as place_id, max(latitude) as latitude, max(longitude) as longitude, max(created_at) as last_date"))
+        return Visit::select(DB::raw("driver_id, max(place_id) as place_id, max(lat) as lat, max(lng) as lng, max(created_at) as last_date"))
             ->with(['driver', 'place'])
             ->groupBy('driver_id')->get();
     }

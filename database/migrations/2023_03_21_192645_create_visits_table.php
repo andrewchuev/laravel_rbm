@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('driver_id');
             $table->integer('place_id');
-            $table->decimal('latitude', 10, 8);
-            $table->decimal('longitude', 11, 8);
+            $table->decimal('lat', 10, 8);
+            $table->decimal('lng', 11, 8);
             $table->timestamps();
         });
     }

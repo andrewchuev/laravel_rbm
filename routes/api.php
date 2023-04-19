@@ -22,8 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('setpoint/{id}{latitude}{longitude}', function ($id, $latitude, $longitude) {
-    return "$id $latitude $longitude";
+Route::get('setpoint/{id}{lat}{lng}', function ($id, $lat, $lng) {
+    return "$id $lat $lng";
 });
 
 Route::get('addpoint', [PointsController::class, 'addPoint' ]);

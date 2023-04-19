@@ -22,20 +22,20 @@ class PointsController extends Controller
 
         $driverId =  $driver->id;
         $placeId =  $request->place_id;
-        $latitude =  $request->latitude;
-        $longitude =  $request->longitude;
+        $lat =  $request->lat;
+        $lng =  $request->lng;
 
         $visit = new Visit;
         $visit->driver_id = $driverId;
         $visit->place_id = $placeId;
-        $visit->latitude = $latitude;
-        $visit->longitude = $longitude;
+        $visit->lat = $lat;
+        $visit->lng = $lng;
         $visit->save();
 
 
         $driver = Driver::find($driverId);
-        $driver->latitude = $latitude;
-        $driver->longitude = $longitude;
+        $driver->lat = $lat;
+        $driver->lng = $lng;
         $driver->place_id = $placeId;
         $driver->save();
 

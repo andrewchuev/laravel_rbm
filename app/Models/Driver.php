@@ -23,8 +23,8 @@ class Driver extends Model
         'driver_no',
         'area_id',
         'place_id',
-        'latitude',
-        'longitude',
+        'lat',
+        'lng',
     ];
 
     public function area()
