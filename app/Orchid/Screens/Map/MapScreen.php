@@ -18,7 +18,7 @@ class MapScreen extends Screen
     public function query(): iterable
     {
         return [
-            'drivers' => Driver::with(['area'])->whereNotNull(['latitude', 'longitude'])->get()
+            'drivers' => Driver::with(['area'])->whereNotNull(['lat', 'lng'])->get()
         ];
     }
 

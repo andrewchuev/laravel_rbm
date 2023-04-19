@@ -13,8 +13,8 @@ class Visit extends Model
     protected $fillable = [
         'driver_id',
         'place_id',
-        'latitude',
-        'longitude',
+        'lat',
+        'lng',
         'permissions',
         'created_at',
     ];
