@@ -18,7 +18,7 @@ class Driver extends Model
         'name',
         'email',
         'phone',
-        'chat_id',
+        'telegram_id',
         'car_no',
         'driver_no',
         'area_id',

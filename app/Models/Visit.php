@@ -4,18 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 
 class Visit extends Model
 {
-    use HasFactory, AsSource;
+    use HasFactory, AsSource, Filterable;
 
     protected $fillable = [
         'driver_id',
         'place_id',
         'lat',
         'lng',
-        'permissions',
+        'created_at',
+    ];
+
+    protected $allowedSorts = [
+        'driver_id',
+        'place_id',
+        'created_at',
+    ];
+
+    protected array $allowedFilters = [
+        'driver',
+        'place',
         'created_at',
     ];
 

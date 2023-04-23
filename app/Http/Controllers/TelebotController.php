@@ -4,11 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Driver;
 use App\Models\Place;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 
 class TelebotController extends Controller
 {
-    public string $token = '6210096609:AAH2ESiGb1qYXQtMRYHkyd8rEJ4YwKIpxHk';
+    //public string $token = '6210096609:AAH2ESiGb1qYXQtMRYHkyd8rEJ4YwKIpxHk';
+    public string $token;
+    // https://api.telegram.org/bot6170505099:AAGJ3XtXtTmyRB-ZNQp3h6EKWbA4Wwz25gQ/setWebhook?url=https://reslab.pro/telebot/&allowed_updates=["callback_query","message"]
+
+    public function __construct(Request $request)
+    {
+        $host = $request->getHttpHost();
+
+        if ($host === 'rbm.local') {
+            $this->token =  '6170505099:AAGJ3XtXtTmyRB-ZNQp3h6EKWbA4Wwz25gQ';
+        } else {
+            $this->token = '6210096609:AAH2ESiGb1qYXQtMRYHkyd8rEJ4YwKIpxHk';
+        }
+    }
 
     public function index(Request $request)
     {
@@ -27,22 +41,25 @@ class TelebotController extends Controller
         return true;
     }
 
-    public function callbackHandler($json)
+    public function callbackHandler($json): void
     {
         $id = $json['callback_query']['from']['id'];
         $fields = 'callback_query_id=' . $json['callback_query']['id'] . '&text=';
         $this->curl('answerCallbackQuery', $fields);
 
-        $chatId = $json['callback_query']['from']['id'];
-
         $place     = explode('_', $json['callback_query']['data']);
-        $placeName = 'Вы выбрали место: ' . $place[2] . "\n\nТеперь нажмите кнопку 'Отправить геолокацию' и подтвердите отправку.\n\n";
+        $placeName = 'Вы выбрали место: ' . $place[2] . "\nТеперь нажмите кнопку \"Отправить геолокацию\" и подтвердите отправку.\n";
 
-        $driver = Driver::where('chat_id', $id)->first();
+        $driver = Driver::where('telegram_id', $id)->first();
 
         if ($driver) {
             $driver->place_id = $place[1];
             $driver->save();
+
+            $visit = new Visit();
+            $visit->driver_id = $driver->id;
+            $visit->place_id = $place[1];
+            $visit->save();
         }
 
         $keyboard = [
@@ -61,7 +78,7 @@ class TelebotController extends Controller
 
         ];
 
-        $fields = 'chat_id=' . $chatId . '&text=' . rawurlencode($placeName) . '&reply_markup=' . json_encode($keyboard);
+        $fields = 'chat_id=' . $id . '&text=' . rawurlencode($placeName) . '&reply_markup=' . json_encode($keyboard);
         $this->curl('sendMessage', $fields);
 
         file_put_contents(__DIR__ . '/debug-telebot-action_01.txt', print_r($placeName, true));
@@ -95,12 +112,12 @@ class TelebotController extends Controller
         if (!empty($json['message']['location'])) {
             $this->updateDriver($json);
         } else {
-            $driver = Driver::where('chat_id', $id)->first();
+            $driver = Driver::where('telegram_id', $id)->first();
             if (empty($driver) || empty($driver->area_id)) {
                 $this->createNewDriver($json);
 
 
-                $fields = 'chat_id=' . $id . '&text=' . rawurlencode('Данные водителя требуют подтвержденияю Обратитесь к администратору');
+                $fields = 'chat_id=' . $id . '&text=' . rawurlencode('Данные водителя требуют подтверждения. Обратитесь к администратору');
                 $this->curl('sendMessage', $fields);
             } else {
                 $this->sendPlaces($id);
@@ -117,15 +134,24 @@ class TelebotController extends Controller
         $id = $json['message']['from']['id'];
 
         $location = $json['message']['location'];
-        $lat = $location['lat'];
-        $lng = $location['lng'];
+        $lat = $location['latitude'];
+        $lng = $location['longitude'];
 
-        $driver = Driver::where('chat_id', $id)->first();
+        $driver = Driver::where('telegram_id', $id)->first();
 
         if ($driver) {
             $driver->lat = $lat;
             $driver->lng = $lng;
             $driver->save();
+
+            $visit = Visit::where('driver_id', $driver->id)->orderBy('id', 'desc')->first();
+
+            if ($visit) {
+                $visit->driver_id = $driver->id;
+                $visit->lat = $lat;
+                $visit->lng = $lng;
+                $visit->save();
+            }
         }
 
 
@@ -175,7 +201,7 @@ class TelebotController extends Controller
 
     public function getPlaces(int $telegram_id)
     {
-        $driver = Driver::where('chat_id', $telegram_id)->first();
+        $driver = Driver::where('telegram_id', $telegram_id)->first();
 
         if (empty($driver)) {
             return [];
@@ -190,20 +216,24 @@ class TelebotController extends Controller
     {
         $id = $json['message']['from']['id'];
 
-        $driver = Driver::where('chat_id', $id)->first();
+        $driver = Driver::where('telegram_id', $id)->first();
 
         if (!empty($driver)) {
             return false;
         }
 
-        //$driverName = $json['message']['from']['first_name'] ?? '' . ' ' . $json['message']['from']['last_name'] ?? '' . '(' . $json['message']['from']['username'] ?? '' . ')';
+        /*        $firstName = $json['message']['from']['first_name'] . ' ' ?? '';
+                $lastName = $json['message']['from']['last_name'] ?? '';
+                $userName = !empty($json['message']['from']['username']) ? ' (' . $json['message']['from']['username'] . ')' : '';
+                $driverName = $firstName . $lastName . $userName;*/
+
         $driverName = $json['message']['from']['first_name'];
 
         $driver = new Driver();
         $driver->name = $driverName;
         $driver->email = 'udefined@mail.com';
         $driver->phone = '';
-        $driver->chat_id = $id;
+        $driver->telegram_id = $id;
         $driver->driver_no = 0;
         $driver->car_no = 0;
         $driver->area_id = 0;

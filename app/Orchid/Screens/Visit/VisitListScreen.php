@@ -4,6 +4,7 @@ namespace App\Orchid\Screens\Visit;
 
 use App\Models\Visit;
 use App\Orchid\Layouts\Visit\VisitListLayout;
+use App\Orchid\Layouts\Visit\VisitSelection;
 use Orchid\Screen\Screen;
 
 class VisitListScreen extends Screen
@@ -16,7 +17,7 @@ class VisitListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'visits' => Visit::orderBy('created_at', 'desc')->get()
+            'visits' => Visit::filters(VisitSelection::class)->orderBy('created_at', 'desc')->paginate(10)
         ];
     }
 
@@ -48,6 +49,7 @@ class VisitListScreen extends Screen
     public function layout(): iterable
     {
         return [
+            VisitSelection::class,
             VisitListLayout::class
         ];
     }
