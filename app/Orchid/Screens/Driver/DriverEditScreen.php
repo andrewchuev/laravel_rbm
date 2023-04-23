@@ -75,27 +75,27 @@ class DriverEditScreen extends Screen
         return [
             Layout::rows([
                 Input::make('driver.name')
-                    ->title('Имя'),
+                    ->title('Имя')->required(),
 
                 Input::make('driver.email')
                     ->title('Email')
-                    ->placeholder('Driver Email'),
+                    ->placeholder('Driver Email')->required(),
 
                 Input::make('driver.phone')
-                    ->title('Телефон'),
+                    ->title('Телефон')->required(),
 
-                Input::make('driver.chat_id')
-                    ->title('Telegram ID'),
+                Input::make('driver.telegram_id')
+                    ->title('Telegram ID')->required(),
 
                 Input::make('driver.car_no')
-                    ->title('№ авто'),
+                    ->title('№ авто')->required(),
 
                 Input::make('driver.driver_no')
-                    ->title('№ водителя'),
+                    ->title('№ водителя')->required(),
 
                 Select::make('driver.area_id')
                     ->title('Участок')
-                    ->fromModel(Area::class, 'name'),
+                    ->fromModel(Area::class, 'name')->required()->empty(),
 
             ])
         ];

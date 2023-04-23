@@ -1,0 +1,31 @@
+Array
+(
+    [update_id] => 663462142
+    [message] => Array
+        (
+            [message_id] => 601
+            [from] => Array
+                (
+                    [id] => 405941565
+                    [is_bot] => 
+                    [first_name] => Andrey
+                    [last_name] => Chuev
+                    [username] => AndrewChuev
+                    [language_code] => ru
+                    [is_premium] => 1
+                )
+
+            [chat] => Array
+                (
+                    [id] => 405941565
+                    [first_name] => Andrey
+                    [last_name] => Chuev
+                    [username] => AndrewChuev
+                    [type] => private
+                )
+
+            [date] => 1682271874
+            [text] => 123
+        )
+
+)

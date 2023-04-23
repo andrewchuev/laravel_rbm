@@ -26,11 +26,11 @@ class VisitListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('driver','Driver')->render(fn(Visit $visit) => $visit->driver->name . ' (' . $visit->driver->area->name . ')'),
-            TD::make('place','Place')->render(fn(Visit $visit) => $visit->place->name ?? ''),
+            TD::make('driver_id','Водитель')->render(fn(Visit $visit) => $visit->driver?->name . ' (' . $visit->driver?->area->name . ')')->sort(),
+            TD::make('place_id','Место')->render(fn(Visit $visit) => $visit->place?->name ?? '')->sort(),
             TD::make('lat','Lat'),
             TD::make('lng','Lng'),
-            TD::make('created_at','Date/Time')->render(fn(Visit $visit) => $visit->created_at->format('d M Y - H:i:s')),
+            TD::make('created_at','Дата/Время')->render(fn(Visit $visit) => $visit->created_at->format('d M Y - H:i:s'))->sort(),
         ];
     }
 }
