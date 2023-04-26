@@ -7,7 +7,6 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\ModalToggle;
-use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -40,35 +39,41 @@ class DriverListLayout extends Table
             TD::make('', 'Участок / № автомобиля / № водителя')
                 ->render(fn(Driver $driver) => "{$driver->area?->name}  <br>$driver?->car_no<br>$driver?->driver_no"),
             TD::make('', 'Последняя поездка')
-                ->render(fn(Driver $driver) => "{$driver->place?->name}<br>{$driver?->updated_at->format('Y-d-m')}<br>{$driver?->updated_at->format('H:i')}"),
+                ->render(
+                    function (Driver $driver) {
+                        $diffMinutes = $driver->updated_at->diffInMinutes();
+                        $diffClass   = $diffMinutes >= 90 ? 'text-danger' : '';
+                        $diff =  "<span class='$diffClass'>" . $driver->updated_at->diffForHumans(null, null, true, 2) . "</span>";
+                        return "{$driver->place?->name}<br>{$driver?->updated_at->format('Y-d-m')}<br>{$driver?->updated_at->format('H:i')} ($diff)";
+                    }),
 
-            TD::make('map', 'Карта')
-                ->render(fn(Driver $driver) => ModalToggle::make('Показать на карте')
-                    ->modal('showOnMapModal')
-                    ->icon('map')
-                    ->asyncParameters(['driver_id' => $driver->id])),
+                    TD::make('map', 'Карта')
+                        ->render(fn(Driver $driver) => ModalToggle::make('Показать на карте')
+                            ->modal('showOnMapModal')
+                            ->icon('map')
+                            ->asyncParameters(['driver_id' => $driver->id])),
 
-            /*TD::make('map', 'Карта')
-                ->render(fn(Driver $driver) => Input::make('updated_at')->value($driver->updated_at)),*/
+                    /*TD::make('map', 'Карта')
+                        ->render(fn(Driver $driver) => Input::make('updated_at')->value($driver->updated_at)),*/
 
-            TD::make(__('Actions'))
-                ->align(TD::ALIGN_CENTER)
-                ->width('100px')
-                ->render(fn(Driver $driver) => DropDown::make()
-                    ->icon('options-vertical')
-                    ->list([
+                    TD::make(__('Actions'))
+                        ->align(TD::ALIGN_CENTER)
+                        ->width('100px')
+                        ->render(fn(Driver $driver) => DropDown::make()
+                            ->icon('options-vertical')
+                            ->list([
 
-                        Link::make(__('Изменить'))
-                            ->route('platform.drivers.edit', $driver->id)
-                            ->icon('pencil'),
+                                Link::make(__('Изменить'))
+                                    ->route('platform.drivers.edit', $driver->id)
+                                    ->icon('pencil'),
 
-                        Button::make(__('Удалить'))
-                            ->icon('trash')
-                            ->confirm(__('Вы действительно хотите удалить водителя?'))
-                            ->method('remove', [
-                                'id' => $driver->id,
-                            ]),
-                    ]))
+                                Button::make(__('Удалить'))
+                                    ->icon('trash')
+                                    ->confirm(__('Вы действительно хотите удалить водителя?'))
+                                    ->method('remove', [
+                                        'id' => $driver->id,
+                                    ]),
+                            ]))
         ];
     }
 }
