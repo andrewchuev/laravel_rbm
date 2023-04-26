@@ -9,6 +9,8 @@ use Orchid\Screen\Layouts\Selection;
 
 class VisitSelection extends Selection
 {
+
+    public $template = self::TEMPLATE_LINE;
     /**
      * @return Filter[]
      */

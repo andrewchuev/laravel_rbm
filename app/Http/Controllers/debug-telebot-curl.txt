@@ -3,7 +3,7 @@ stdClass Object
     [ok] => 1
     [result] => stdClass Object
         (
-            [message_id] => 602
+            [message_id] => 612
             [from] => stdClass Object
                 (
                     [id] => 6170505099
@@ -21,116 +21,8 @@ stdClass Object
                     [type] => private
                 )
 
-            [date] => 1682271875
-            [text] => Выберите место:
-            [reply_markup] => stdClass Object
-                (
-                    [inline_keyboard] => Array
-                        (
-                            [0] => Array
-                                (
-                                    [0] => stdClass Object
-                                        (
-                                            [text] => Бур агрегат №1
-                                            [callback_data] => action_31_Бур агрегат №1
-                                        )
-
-                                )
-
-                            [1] => Array
-                                (
-                                    [0] => stdClass Object
-                                        (
-                                            [text] => УОС
-                                            [callback_data] => action_32_УОС
-                                        )
-
-                                )
-
-                            [2] => Array
-                                (
-                                    [0] => stdClass Object
-                                        (
-                                            [text] => Компрессор
-                                            [callback_data] => action_33_Компрессор
-                                        )
-
-                                )
-
-                            [3] => Array
-                                (
-                                    [0] => stdClass Object
-                                        (
-                                            [text] => РВМ
-                                            [callback_data] => action_34_РВМ
-                                        )
-
-                                )
-
-                            [4] => Array
-                                (
-                                    [0] => stdClass Object
-                                        (
-                                            [text] => Шламник
-                                            [callback_data] => action_35_Шламник
-                                        )
-
-                                )
-
-                            [5] => Array
-                                (
-                                    [0] => stdClass Object
-                                        (
-                                            [text] => Водозабор
-                                            [callback_data] => action_36_Водозабор
-                                        )
-
-                                )
-
-                            [6] => Array
-                                (
-                                    [0] => stdClass Object
-                                        (
-                                            [text] => Глинстанция
-                                            [callback_data] => action_37_Глинстанция
-                                        )
-
-                                )
-
-                            [7] => Array
-                                (
-                                    [0] => stdClass Object
-                                        (
-                                            [text] => База
-                                            [callback_data] => action_38_База
-                                        )
-
-                                )
-
-                            [8] => Array
-                                (
-                                    [0] => stdClass Object
-                                        (
-                                            [text] => Заправка
-                                            [callback_data] => action_39_Заправка
-                                        )
-
-                                )
-
-                            [9] => Array
-                                (
-                                    [0] => stdClass Object
-                                        (
-                                            [text] => Септик
-                                            [callback_data] => action_40_Септик
-                                        )
-
-                                )
-
-                        )
-
-                )
-
+            [date] => 1682507632
+            [text] => Когда прибудите на следующую точку - нажмите кнопку "Выбрать следующее место"
         )
 
 )

@@ -26,11 +26,19 @@ class VisitListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('driver_id','Водитель')->render(fn(Visit $visit) => $visit->driver?->name . ' (' . $visit->driver?->area->name . ')')->sort(),
-            TD::make('place_id','Место')->render(fn(Visit $visit) => $visit->place?->name ?? '')->sort(),
-            TD::make('lat','Lat'),
-            TD::make('lng','Lng'),
-            TD::make('created_at','Дата/Время')->render(fn(Visit $visit) => $visit->created_at->format('d M Y - H:i:s'))->sort(),
+            TD::make('driver_id', 'Водитель')->render(fn(Visit $visit) => $visit->driver?->name . ' (' . $visit->driver?->area->name . ')')->sort(),
+            TD::make('place_id', 'Место')->render(fn(Visit $visit) => $visit->place?->name ?? '')->sort(),
+            /*TD::make('lat','Lat'),
+            TD::make('lng','Lng'),*/
+            TD::make('created_at', 'Дата/Время')->render(fn(Visit $visit) => $visit->created_at->format('d M Y - H:i:s'))->sort(),
+            TD::make('diff_time', 'Последняя поездка')
+                ->render(
+                    function (Visit $visit) {
+                        $diffMinutes = $visit->created_at->diffInMinutes();
+                        $diffClass   = $diffMinutes >= 90 ? 'text-danger' : '';
+                        return "<span class='$diffClass'>" . $visit->created_at->diffForHumans(null, null, true, 2) . "</span>";
+                    }
+                ),
         ];
     }
 }
