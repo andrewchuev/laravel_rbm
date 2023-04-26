@@ -3,7 +3,7 @@ stdClass Object
     [ok] => 1
     [result] => stdClass Object
         (
-            [message_id] => 612
+            [message_id] => 617
             [from] => stdClass Object
                 (
                     [id] => 6170505099
@@ -21,7 +21,7 @@ stdClass Object
                     [type] => private
                 )
 
-            [date] => 1682507632
+            [date] => 1682537029
             [text] => Когда прибудите на следующую точку - нажмите кнопку "Выбрать следующее место"
         )
 

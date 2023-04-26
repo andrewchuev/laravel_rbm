@@ -1,9 +1,9 @@
 Array
 (
-    [update_id] => 663462148
+    [update_id] => 663462151
     [message] => Array
         (
-            [message_id] => 611
+            [message_id] => 616
             [from] => Array
                 (
                     [id] => 405941565
@@ -24,10 +24,10 @@ Array
                     [type] => private
                 )
 
-            [date] => 1682507631
+            [date] => 1682537028
             [reply_to_message] => Array
                 (
-                    [message_id] => 610
+                    [message_id] => 615
                     [from] => Array
                         (
                             [id] => 6170505099
@@ -45,15 +45,15 @@ Array
                             [type] => private
                         )
 
-                    [date] => 1682507628
-                    [text] => Вы выбрали место: Глинстанция
+                    [date] => 1682537025
+                    [text] => Вы выбрали место: Септик
 Теперь нажмите кнопку "Отправить геолокацию" и подтвердите отправку.
                 )
 
             [location] => Array
                 (
-                    [latitude] => 47.831407
-                    [longitude] => 35.137596
+                    [latitude] => 47.831355
+                    [longitude] => 35.137584
                 )
 
         )
