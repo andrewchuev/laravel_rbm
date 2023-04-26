@@ -7,6 +7,7 @@ use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\ModalToggle;
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -46,6 +47,9 @@ class DriverListLayout extends Table
                     ->modal('showOnMapModal')
                     ->icon('map')
                     ->asyncParameters(['driver_id' => $driver->id])),
+
+            /*TD::make('map', 'Карта')
+                ->render(fn(Driver $driver) => Input::make('updated_at')->value($driver->updated_at)),*/
 
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)

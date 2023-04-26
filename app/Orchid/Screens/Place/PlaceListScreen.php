@@ -19,7 +19,7 @@ class PlaceListScreen extends Screen
      */
     public function query(): iterable
     {
-        return ['places' => Place::filtersApply([PlaceFilter::class])->filters()->paginate()];
+        return ['places' => Place::filtersApply([PlaceFilter::class])->filters()->paginate(10)];
     }
 
     /**
@@ -29,7 +29,7 @@ class PlaceListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Places List';
+        return 'Места';
     }
 
     /**
@@ -40,7 +40,7 @@ class PlaceListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Link::make(__('Add'))
+            Link::make(__('Добавить'))
                 ->icon('plus')
                 ->route('platform.places.create'),
         ];

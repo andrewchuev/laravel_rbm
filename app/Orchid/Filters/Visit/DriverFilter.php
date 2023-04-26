@@ -52,6 +52,7 @@ class DriverFilter extends Filter
         return [
             Select::make('driver_id')
                 ->fromModel(Driver::class, 'name' )
+                ->value($this->request->get('driver_id'))
                 ->title('Водитель')
                 ->empty('Не выбран')
         ];

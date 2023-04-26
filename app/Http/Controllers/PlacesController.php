@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class PlacesController extends Controller
 {
     public function getPlaces() {
-        return Place::all();
+        return Place::with('area')->get();
     }
 
     public function getVisits() {

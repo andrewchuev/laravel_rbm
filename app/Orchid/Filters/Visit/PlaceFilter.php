@@ -4,6 +4,7 @@ namespace App\Orchid\Filters\Visit;
 
 use App\Models\Place;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 use Orchid\Filters\Filter;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Select;
@@ -27,7 +28,7 @@ class PlaceFilter extends Filter
      */
     public function parameters(): ?array
     {
-        return ['place_id'];
+        return ['place_id', 'name'];
     }
 
     /**
@@ -40,7 +41,6 @@ class PlaceFilter extends Filter
     public function run(Builder $builder): Builder
     {
         return $builder->where('place_id', $this->request->get('place_id'));
-
     }
 
     /**
@@ -50,10 +50,14 @@ class PlaceFilter extends Filter
      */
     public function display(): iterable
     {
+        $query = Place::select("places.id as id", DB::raw("CONCAT(places.name, ' - ' , areas.name) as name"))
+            ->leftJoin('areas', 'areas.id', '=', 'places.area_id');
+
         return [
             Select::make('place_id')
-                ->fromModel(Place::class, 'name' )
+                ->fromQuery($query, 'name')
                 ->title('Место')
+                ->value($this->request->get('place_id'))
                 ->empty('Не выбрано')
         ];
     }

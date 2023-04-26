@@ -1,5 +1,5 @@
 Array
 (
-    [latitude] => 47.831388
-    [longitude] => 35.137576
+    [latitude] => 47.831407
+    [longitude] => 35.137596
 )
