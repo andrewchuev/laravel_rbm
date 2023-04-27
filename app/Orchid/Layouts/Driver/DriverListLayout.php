@@ -33,25 +33,25 @@ class DriverListLayout extends Table
             TD::make('id', 'ID')->sort(),
 
             TD::make('name', 'Имя')
-                ->width('200px')->sort(),
+                ->width('200px')->sort()->filter(),
 
             /*TD::make('', "Email")
                 ->render(fn(Driver $driver) => $driver?->email),*/
 
             TD::make('phone', "Телефон")
-                ->render(fn(Driver $driver) => $driver?->phone)->sort(),
+                ->render(fn(Driver $driver) => $driver?->phone)->sort()->filter(),
 
             TD::make('telegram_id', "Telegram ID ")
-                ->render(fn(Driver $driver) => $driver?->telegram_id)->sort(),
+                ->render(fn(Driver $driver) => $driver?->telegram_id)->sort()->filter(),
 
-            TD::make('place_id', 'Участок')
-                ->render(fn(Driver $driver) => $driver->area?->name)->sort(),
+            TD::make('area_id', 'Участок')
+                ->render(fn(Driver $driver) => $driver->area?->name)->sort()->filter(),
 
             TD::make('car_no', '№ авто')
-                ->render(fn(Driver $driver) => $driver?->car_no)->sort(),
+                ->render(fn(Driver $driver) => $driver?->car_no)->sort()->filter(),
 
             TD::make('driver_no', '№ водителя')
-                ->render(fn(Driver $driver) => $driver?->driver_no)->sort(),
+                ->render(fn(Driver $driver) => $driver?->driver_no)->sort()->filter(),
 
             TD::make('updated_at', 'Последняя поездка')
                 ->render(
