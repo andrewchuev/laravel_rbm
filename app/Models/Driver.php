@@ -33,7 +33,7 @@ class Driver extends Model
         'name',
         'phone',
         'telegram_id',
-        'area',
+        'area_id',
         'car_no',
         'driver_no',
         'updated_at',

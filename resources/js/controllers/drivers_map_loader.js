@@ -48,13 +48,13 @@ export default class extends Controller {
             });
 
         //polygons(map);
-        getPlaces(map);
+        placesLoader(map);
     }
 
 
 }
 
-async function getPlaces(map) {
+async function placesLoader(map) {
     const request = new Request("/api/places", {
         method : "GET",
         headers: {
