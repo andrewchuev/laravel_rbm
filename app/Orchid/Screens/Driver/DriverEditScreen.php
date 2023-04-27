@@ -7,6 +7,7 @@ use App\Models\Driver;
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Screen;
@@ -73,31 +74,45 @@ class DriverEditScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::rows([
-                Input::make('driver.name')
-                    ->title('Имя')->required(),
+            Layout::columns([
+                Layout::rows([
+                    Input::make('driver.name')
+                        ->title('Имя')->required(),
 
-                Input::make('driver.email')
-                    ->title('Email')
-                    ->placeholder('Driver Email')->required(),
+                    Input::make('driver.email')
+                        ->title('Email')
+                        ->placeholder('Driver Email')->required(),
 
-                Input::make('driver.phone')
-                    ->title('Телефон')->required(),
+                    Input::make('driver.phone')
+                        ->title('Телефон')->required(),
 
-                Input::make('driver.telegram_id')
-                    ->title('Telegram ID')->required(),
+                    Input::make('driver.telegram_id')
+                        ->title('Telegram ID')->required(),
+                ]),
+                Layout::rows([
 
-                Input::make('driver.car_no')
-                    ->title('№ авто')->required(),
+                    Input::make('driver.car_no')
+                        ->title('№ авто')->required(),
 
-                Input::make('driver.driver_no')
-                    ->title('№ водителя')->required(),
+                    Input::make('driver.driver_no')
+                        ->title('№ водителя')->required(),
+                    Select::make('driver.area_id')
+                        ->title('Участок')
+                        ->fromModel(Area::class, 'name')->required()->empty(),
 
-                Select::make('driver.area_id')
-                    ->title('Участок')
-                    ->fromModel(Area::class, 'name')->required()->empty(),
 
-            ])
+                        Group::make([
+                            Input::make('driver.lat')
+                                ->title('Latitude'),
+
+                            Input::make('driver.lng')
+                                ->title('Longitude'),
+                        ]),
+
+
+                ]),
+            ]),
+
         ];
     }
 

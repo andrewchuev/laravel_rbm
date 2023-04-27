@@ -17,8 +17,8 @@ class VisitSelection extends Selection
     public function filters(): iterable
     {
         return [
+            DriverFilter::class,
             PlaceFilter::class,
-            DriverFilter::class
         ];
     }
 }

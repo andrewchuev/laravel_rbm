@@ -31,14 +31,14 @@ class VisitListLayout extends Table
             /*TD::make('lat','Lat'),
             TD::make('lng','Lng'),*/
             TD::make('created_at', 'Дата/Время')->render(fn(Visit $visit) => $visit->created_at->format('d M Y - H:i:s'))->sort(),
-            TD::make('diff_time', 'Последняя поездка')
+            /*TD::make('diff_time', 'Последняя поездка')
                 ->render(
                     function (Visit $visit) {
                         $diffMinutes = $visit->created_at->diffInMinutes();
                         $diffClass   = $diffMinutes >= 90 ? 'text-danger' : '';
                         return "<span class='$diffClass'>" . $visit->created_at->diffForHumans(null, null, true, 2) . "</span>";
                     }
-                ),
+                ),*/
         ];
     }
 }
