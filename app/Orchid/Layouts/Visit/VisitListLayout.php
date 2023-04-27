@@ -2,7 +2,9 @@
 
 namespace App\Orchid\Layouts\Visit;
 
+use App\Models\Driver;
 use App\Models\Visit;
+use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -31,6 +33,11 @@ class VisitListLayout extends Table
             /*TD::make('lat','Lat'),
             TD::make('lng','Lng'),*/
             TD::make('created_at', 'Дата/Время')->render(fn(Visit $visit) => $visit->created_at->format('d M Y - H:i:s'))->sort(),
+            TD::make('map', 'Карта')
+                ->render(fn(Visit $visit) => ModalToggle::make('')
+                    ->modal('showOnMapModal')
+                    ->icon('map')
+                    ->asyncParameters(['driver_id' => $visit->driver_id])),
             /*TD::make('diff_time', 'Последняя поездка')
                 ->render(
                     function (Visit $visit) {

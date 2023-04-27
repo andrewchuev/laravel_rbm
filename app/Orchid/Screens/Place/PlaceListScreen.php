@@ -19,7 +19,7 @@ class PlaceListScreen extends Screen
      */
     public function query(): iterable
     {
-        return ['places' => Place::filtersApply([PlaceFilter::class])->filters()->paginate(10)];
+        return ['places' => Place::filtersApply([PlaceFilter::class])->filters()->paginate(20)];
     }
 
     /**
