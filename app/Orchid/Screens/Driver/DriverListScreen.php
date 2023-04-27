@@ -24,7 +24,7 @@ class DriverListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'drivers' => Driver::filters()->orderBy('name', 'asc')->paginate(10),
+            'drivers' => Driver::filters()->orderBy('name', 'asc')->paginate(20),
             //'visits' => Visit::filters(VisitSelection::class)->orderBy('created_at', 'desc')->paginate(10)
         ];
     }
