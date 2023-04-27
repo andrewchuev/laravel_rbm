@@ -30,31 +30,43 @@ class DriverListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('id', 'ID'),
+            TD::make('id', 'ID')->sort(),
+
             TD::make('name', 'Имя')
-                ->width('200px'),
-            TD::make('', " Email \n Телефон \n Telegram ID ")
-                ->render(fn(Driver $driver) => "$driver?->email <br>$driver?->phone  <br>$driver?->telegram_id")
-                ->alignCenter(),
-            TD::make('', 'Участок / № автомобиля / № водителя')
-                ->render(fn(Driver $driver) => "{$driver->area?->name}  <br>$driver?->car_no<br>$driver?->driver_no"),
-            TD::make('', 'Последняя поездка')
+                ->width('200px')->sort(),
+
+            /*TD::make('', "Email")
+                ->render(fn(Driver $driver) => $driver?->email),*/
+
+            TD::make('phone', "Телефон")
+                ->render(fn(Driver $driver) => $driver?->phone)->sort(),
+
+            TD::make('telegram_id', "Telegram ID ")
+                ->render(fn(Driver $driver) => $driver?->telegram_id)->sort(),
+
+            TD::make('place_id', 'Участок')
+                ->render(fn(Driver $driver) => $driver->area?->name)->sort(),
+
+            TD::make('car_no', '№ авто')
+                ->render(fn(Driver $driver) => $driver?->car_no)->sort(),
+
+            TD::make('driver_no', '№ водителя')
+                ->render(fn(Driver $driver) => $driver?->driver_no)->sort(),
+
+            TD::make('updated_at', 'Последняя поездка')
                 ->render(
                     function (Driver $driver) {
                         $diffMinutes = $driver->updated_at->diffInMinutes();
                         $diffClass   = $diffMinutes >= 90 ? 'text-danger' : '';
                         $diff =  "<span class='$diffClass'>" . $driver->updated_at->diffForHumans(null, null, true, 2) . "</span>";
-                        return "{$driver->place?->name}<br>{$driver?->updated_at->format('Y-d-m')}<br>{$driver?->updated_at->format('H:i')} ($diff)";
-                    }),
+                        return "{$driver->place?->name} {$driver?->updated_at->format('Y-d-m H:i')} <br> $diff";
+                    })->sort(),
 
                     TD::make('map', 'Карта')
-                        ->render(fn(Driver $driver) => ModalToggle::make('Показать на карте')
+                        ->render(fn(Driver $driver) => ModalToggle::make('')
                             ->modal('showOnMapModal')
                             ->icon('map')
                             ->asyncParameters(['driver_id' => $driver->id])),
-
-                    /*TD::make('map', 'Карта')
-                        ->render(fn(Driver $driver) => Input::make('updated_at')->value($driver->updated_at)),*/
 
                     TD::make(__('Actions'))
                         ->align(TD::ALIGN_CENTER)
