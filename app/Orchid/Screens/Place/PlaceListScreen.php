@@ -2,13 +2,14 @@
 
 namespace App\Orchid\Screens\Place;
 
+use App\Models\Driver;
 use App\Models\Place;
 use App\Orchid\Filters\PlaceFilter;
 use App\Orchid\Layouts\Place\PlaceFiltersLayout;
 use App\Orchid\Layouts\Place\PlaceListLayout;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
-
+use Orchid\Support\Facades\Toast;
 
 class PlaceListScreen extends Screen
 {
@@ -57,5 +58,14 @@ class PlaceListScreen extends Screen
             PlaceFiltersLayout::class,
             PlaceListLayout::class
         ];
+    }
+
+    public function remove(Place $place)
+    {
+        $place->delete();
+
+        Toast::info(__('Место удалено.'));
+
+        return redirect()->route('platform.places');
     }
 }
