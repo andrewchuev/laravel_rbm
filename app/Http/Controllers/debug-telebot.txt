@@ -1,9 +1,9 @@
 Array
 (
-    [update_id] => 663462151
+    [update_id] => 663462152
     [message] => Array
         (
-            [message_id] => 616
+            [message_id] => 618
             [from] => Array
                 (
                     [id] => 405941565
@@ -24,36 +24,17 @@ Array
                     [type] => private
                 )
 
-            [date] => 1682537028
-            [reply_to_message] => Array
+            [date] => 1683290720
+            [text] => /start
+            [entities] => Array
                 (
-                    [message_id] => 615
-                    [from] => Array
+                    [0] => Array
                         (
-                            [id] => 6170505099
-                            [is_bot] => 1
-                            [first_name] => RBMCheckDevBot
-                            [username] => RBMCheckDevBot
+                            [offset] => 0
+                            [length] => 6
+                            [type] => bot_command
                         )
 
-                    [chat] => Array
-                        (
-                            [id] => 405941565
-                            [first_name] => Andrey
-                            [last_name] => Chuev
-                            [username] => AndrewChuev
-                            [type] => private
-                        )
-
-                    [date] => 1682537025
-                    [text] => Вы выбрали место: Септик
-Теперь нажмите кнопку "Отправить геолокацию" и подтвердите отправку.
-                )
-
-            [location] => Array
-                (
-                    [latitude] => 47.831355
-                    [longitude] => 35.137584
                 )
 
         )
