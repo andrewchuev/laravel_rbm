@@ -11,6 +11,7 @@ use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
+use Orchid\Support\Facades\Toast;
 
 class PlaceEditScreen extends Screen
 {
@@ -73,10 +74,10 @@ class PlaceEditScreen extends Screen
         return [
             Layout::rows([
                 Input::make('place.name')
-                    ->title('Название'),
+                    ->title('Название')->required(),
                 Select::make('place.area_id')
-                    ->title('Area')
-                    ->fromModel(Area::class, 'name')->empty('Не выбран'),
+                    ->title('Участок')
+                    ->fromModel(Area::class, 'name')->empty('Не выбран')->required(),
                 Input::make('place.color')
                     ->type('color')
                     ->title('Цвет рамки')
@@ -102,6 +103,15 @@ class PlaceEditScreen extends Screen
         $place->fill($request->get('place'))->save();
 
         Alert::info('Place was saved.');
+
+        return redirect()->route('platform.places');
+    }
+
+    public function remove(Place $place)
+    {
+        $place->delete();
+
+        Toast::info(__('Место удалено.'));
 
         return redirect()->route('platform.places');
     }

@@ -32,8 +32,8 @@ class PlaceListLayout extends Table
     {
         return [
             TD::make('id','ID'),
-            TD::make('name','Place name')->filter(Input::make())->sort(),
-            TD::make('area','Area')->sort()->render(fn(Place $place) => $place->area->name),
+            TD::make('name','Название')->filter(Input::make())->sort(),
+            TD::make('area','Участок')->sort()->render(fn(Place $place) => $place->area?->name),
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
@@ -41,13 +41,13 @@ class PlaceListLayout extends Table
                     ->icon('options-vertical')
                     ->list([
 
-                        Link::make(__('Edit'))
+                        Link::make(__('Изменить'))
                             ->route('platform.places.edit', $place->id)
                             ->icon('pencil'),
 
-                        Button::make(__('Delete'))
+                        Button::make(__('Удалить'))
                             ->icon('trash')
-                            ->confirm(__('Once the place is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
+                            ->confirm(__('Подтвердите удаление'))
                             ->method('remove', [
                                 'id' => $place->id,
                             ]),
